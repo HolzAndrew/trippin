@@ -16,9 +16,13 @@
 </p>
 
 <p>
-  <strong>Image url:</strong>
-  <%= @user.image_url %>
+  <strong>Trips:</strong>
+  <% @trips.each do |trip| %>
+  <a href="/trips/<%= trip %>">Trip <%= trip %></a>
+  <% end %>
 </p>
+
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -12,6 +12,4 @@
 !/log/.keep
 /tmp
 
-# Google Map API key
-
-/config/secrets.yml
+.rbenv-vars

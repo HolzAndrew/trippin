@@ -12,5 +12,6 @@
 !/log/.keep
 /tmp
 
+# Google Map API key
 
-api_keys AIzaSyC2UpXMo4LUFlCHrRwvdQbjOrJRNmDZP5k
+config/secrets.yml

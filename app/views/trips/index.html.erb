@@ -2,7 +2,9 @@
 
 <h1>Listing Trips</h1>
 
-<div id="map"></div>
+<div id="map">
+<input type="text" id="searchbox"></input>
+</div>
     <script type="text/javascript">
 
 var map;
@@ -15,7 +17,7 @@ function initMap() {
 
     </script>
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2UpXMo4LUFlCHrRwvdQbjOrJRNmDZP5k&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?key={API_KEY}&callback=initMap">
     </script>
 
 <!-- <table>
@@ -35,7 +37,7 @@ function initMap() {
       <tr>
         <td><%= trip.name %></td>
         <td><%= trip.lat %></td>
-        <td><%= trip.long %></td>
+        <td><%= trip.lng %></td>
         <td><%= trip.trip_date %></td>
         <td><%= trip.user %></td>
         <td><%= link_to 'Show', trip %></td>

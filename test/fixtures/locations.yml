@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loc_long: MyString
+  loc_lat: MyString
+  address: MyString
+  venue: MyString
+  trip_id: 
+  user_id: 
+
+two:
+  loc_long: MyString
+  loc_lat: MyString
+  address: MyString
+  venue: MyString
+  trip_id: 
+  user_id: 

@@ -1,3 +1,17 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.user_status {
+	width: auto;
+	position: absolute;
+	top: 1%;
+	right: 2%;
+}
+
+div.user_signup {
+	width: 170px;
+	position: absolute;
+	top: 30%;
+	left: 40%;
+}

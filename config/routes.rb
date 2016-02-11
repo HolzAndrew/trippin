@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   resources :comments
   resources :locations
   resources :trips
+  
   resources :users
+  post '/signup' => 'users#create'
+  get '/login' => 'users#index'
+  post '/login' => 'users#login'
+  get '/logout' => 'users#destroy'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

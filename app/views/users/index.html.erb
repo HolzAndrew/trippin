@@ -1,33 +1,49 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Users</h1>
+<div>
+  <% if current_user %>
+  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+  <% else %>
+    <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+  <% end %>  
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Password</th>
-      <th>Image url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.password %></td>
-        <td><%= user.image_url %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Signup</a></li>
+    <li role="presentation"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
+  </ul>
 
-<br>
+  <!-- Tab panes -->
+  <div class="tab-content">
 
-<%= link_to 'New User', new_user_path %>
+    <div role="tabpanel" class="tab-pane fade in active" id="signup">
+
+      <%= form_for :user, url: '/users' do |f| %>
+
+        Name: <%= f.text_field :name %> <br>
+        Email: <%= f.text_field :email %> <br>
+        Image_url: <%= f.text_field :image_url %> <br>
+        Password: <%= f.password_field :password_digest %> <br>
+        Password Confirmation: <%= f.password_field :password_confirmation %> <br>
+        <%= f.submit "Submit" %>
+
+      <% end %>
+
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade" id="login">
+      <%= form_tag '/login' do %>
+
+        Email: <%= text_field_tag :email %> <br>
+        Password: <%= password_field_tag :password_digest %> <br>
+        <%= submit_tag "Submit" %>
+
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

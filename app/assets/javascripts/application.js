@@ -15,3 +15,34 @@
 //= require turbolinks
 //= require_tree .
 
+"use strict";
+
+(function(){
+  $('#trip_search').click(function(){
+    console.log('click noticed')
+
+    $.ajax({
+      type: "GET",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + $('.pure-input-rounded').val(),
+      success: function(data){
+  
+        var results = data.results;
+        var address = results.formatted_address;
+        var place_id = results.place_id;
+        var lng = results.geometry.location.lng;
+        var lat = results.geometry.location.lat;
+    
+
+        $('#forecast').text("It is "+temp+" degrees f in "+city);
+        $('.date').text(date);
+
+      
+
+
+    }
+
+  })
+
+    })
+
+}) ();

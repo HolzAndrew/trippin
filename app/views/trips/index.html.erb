@@ -1,9 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Trips</h1>
-
+<form class="pure-form">
+    <input type="text" class="pure-input-rounded">
+    <button type="button" id="trip_search" class="pure-button">Search</button>
+    </form>
 <div id="map">
-<input type="text" id="searchbox"></input>
+
 </div>
     <script type="text/javascript">
 
@@ -14,13 +17,16 @@ function initMap() {
     zoom: 10
   });
 }
+ var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     </script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["API_KEY"] %>&callback=initMap">
     </script>
 
-<!-- <table>
+<table>
   <thead>
     <tr>
       <th>Name</th>
@@ -46,7 +52,7 @@ function initMap() {
       </tr>
     <% end %>
   </tbody>
-</table> -->
+</table>
 
 <br>
 

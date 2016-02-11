@@ -25,7 +25,6 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     # binding.pry
-
     respond_to do |format|
       if user.save
         format.html { render :index, notice: 'User was successfully created.' }
@@ -42,7 +41,8 @@ class UsersController < ApplicationController
   def login
     user = User.find_by_email(params[:email])
     # If the user exists AND the password entered is correct.
-    if user && user.authenticate(params[:password_digest])
+    # binding.pry
+    if user && user.authenticate(params[:password])
       # Save the user id inside the browser cookie. This is how we keep the user 
       # logged in when they navigate around our website.
       session[:user_id] = user.id
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       redirect_to '/'
     end
   end
-
+ 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -76,11 +76,13 @@ class UsersController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(session[:user_id])
+      if session[:user_id]
+        @user = User.find(session[:user_id])
+      end
     end
 
   # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password_digest, :image_url)
+      params.require(:user).permit(:name, :email, :password, :image_url)
     end
 end

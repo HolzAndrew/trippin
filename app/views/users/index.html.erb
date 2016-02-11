@@ -17,7 +17,7 @@
     </div>
   <% end %>  
 </div>
-
+ 
 <div class="user_signup">
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
@@ -31,25 +31,21 @@
     <div role="tabpanel" class="tab-pane fade in active" id="signup">
 
       <%= form_for :user, url: '/users' do |f| %>
-
         Name: <%= f.text_field :name %> <br>
         Email: <%= f.text_field :email %> <br>
         Image_url: <%= f.text_field :image_url %> <br>
-        Password: <%= f.password_field :password_digest %> <br>
+        Password: <%= f.password_field :password %> <br>
         Password Confirmation: <%= f.password_field :password_confirmation %> <br>
-        <%= f.submit "Submit" %>
-
+        <button type="submit" class="signup">Signup</button>
       <% end %>
 
     </div>
 
     <div role="tabpanel" class="tab-pane fade" id="login">
       <%= form_tag '/login' do %>
-
         Email: <%= text_field_tag :email %> <br>
-        Password: <%= password_field_tag :password_digest %> <br>
-        <%= submit_tag "Submit" %>
-
+        Password: <%= password_field_tag :password %> <br>
+        <button type="submit" class="login">Login</button>
       <% end %>
 
     </div>

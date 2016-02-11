@@ -6,19 +6,13 @@
 </p>
 
 <p>
-  <strong>Email:</strong>
-  <%= @user.email %>
+  <strong>Trips:</strong>
+  <% @user.trips.each do |trip| %>
+  <a href="/trips/<%= trip.id %>">Trip <%= trip.id %></a>
+  <% end %>
 </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
 
-<p>
-  <strong>Image url:</strong>
-  <%= @user.image_url %>
-</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20160211000250) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160211000250) do
   create_table "trips", force: :cascade do |t|
     t.string   "name"
     t.string   "lat"
-    t.string   "long"
+    t.string   "lng"
     t.string   "trip_date"
     t.string   "description"
     t.integer  "user_id"

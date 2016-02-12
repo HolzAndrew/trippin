@@ -29,7 +29,7 @@ $(document).ready(function(){
       url: "https://maps.googleapis.com/maps/api/geocode/json",
       data: {
         address: $('.pure-input-rounded').val(),
-        key: ''
+        key: 'AIzaSyCcIN85clPAZA5_m21QDUD27goF_wJo3g4'
       } ,     
       success: function(data){
         console.log("is this working?")

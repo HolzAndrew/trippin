@@ -1,78 +1,74 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Trips</h1>
-<form class="pure-form">
-    <input type="text" class="pure-input-rounded">
-    <button type="button" id="trip_search" class="pure-button">Search</button>
-    </form>
+<script type="text/javascript">
+
+  var map;
+
+  function initMap() {
+    var myLatLng = {lat: 40.7127, lng: -73.9059};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Hello World!'
+    });
+  }
+
+</script>
+
+<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfDMuS-T8EaT1i_72vzMG181Qm4GyXXos&callback=initMap">
+</script>
+
 <div id="map">
 
 </div>
- <script type="text/javascript">
 
-var map;
-// function initMap() {
-//   map = new google.maps.Map(document.getElementById('map'), {
-//     center: {lat: 40.7127, lng: -73.9059},
-//     zoom: 10
-//   });
-// }
+<form class="trip_search">
+    <input type="text" class="trip_search_input" id="trip_search_input">
+    <button type="submit" id="trip_search" class="pure-button">Search</button>
+</form>
 
-
-function initMap() {
-  var myLatLng = {lat: 40.7127, lng: -73.9059};
-
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
-    center: myLatLng
-  });
-
-  var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'Hello World!'
-  });
-}
-
-    </script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfDMuS-T8EaT1i_72vzMG181Qm4GyXXos&callback=initMap">
-    </script>
-<form class="create_trip" method = "POST">
+<form class="trip_form" id="trip_form" method = "POST">
     <label>Trip Date:</label>
-    <input type="text" class="trip_date"><br>
+    <input type="text" class="trip_date" id="trip_date"><br>
     <label>Trip Name:</label>
-    <input type="text" class="trip_name">
-    <button type="submit" id="create_trip" class="pure-button">Create This Trip</button>
-    </form>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Lat</th>
-      <th>Long</th>
-      <th>Trip date</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <input type="text" class="trip_name" id="trip_name"><br>
+    <label>Trip Description:</label>
+    <input type="text" class="trip_description" id="trip_description"><br>
+    <button type="submit" id="create_trip" class="create_trip">Create This Trip</button>
+</form>
 
-  <tbody>
-    <% @trips.each do |trip| %>
+<h3>Listing Trips</h3>
+<div class="trip_list" id="trip_list">
+  <table>
+    <thead>
       <tr>
-        <td><%= trip.name %></td>
-        <td><%= trip.lat %></td>
-        <td><%= trip.lng %></td>
-        <td><%= trip.trip_date %></td>
-        <td><%= trip.user %></td>
-        <td><%= link_to 'Show', trip %></td>
-        <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-        <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Trip date</th>
+        <th>User</th>
+        <th>Description</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Trip', new_trip_path %>
+    <tbody>
+      <% @trips.each do |trip| %>
+        <tr>
+          <td><%= trip.name %></td>
+          <td><%= trip.trip_date %></td>
+          <td><%= trip.user.name %></td>
+          <td><%= trip.description %></td>
+          <td><%= link_to 'Show', trip %></td>
+          <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+          <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

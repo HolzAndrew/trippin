@@ -44,8 +44,10 @@ $(document).ready(function(){
       type: "GET",
       url: "https://maps.googleapis.com/maps/api/geocode/json",
       data: {
+
         address: $('#trip_search_input').val(),
         key: ''
+
       } ,     
       success: function(data){
         console.log("Search is working?")

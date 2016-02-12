@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 20160211000250) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "image_url"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "trip_id"
   end
 

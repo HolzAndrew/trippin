@@ -1,15 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<div>
+<div class="user_status">
   <% if current_user %>
-  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
-  <% else %>
-    <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+     <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <img id="user_status" src=<%= current_user.image_url %> class="img-circle" height="42" width="42" >
+        <%= current_user.name %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="/users/<%= current_user.id %>">Show Profile</a></li>
+        <li><a href="/users/<%= current_user.id %>/edit">Edit Profile</a></li>
+        <li><a href="#">Invite Friends</a></li>
+        <li><%= link_to "Logout", '/logout' %></li>
+      </ul>
+    </div>
   <% end %>  
 </div>
-
-<div>
-
+ 
+<div class="user_signup">
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Signup</a></li>
@@ -22,28 +31,23 @@
     <div role="tabpanel" class="tab-pane fade in active" id="signup">
 
       <%= form_for :user, url: '/users' do |f| %>
-
         Name: <%= f.text_field :name %> <br>
         Email: <%= f.text_field :email %> <br>
         Image_url: <%= f.text_field :image_url %> <br>
-        Password: <%= f.password_field :password_digest %> <br>
+        Password: <%= f.password_field :password %> <br>
         Password Confirmation: <%= f.password_field :password_confirmation %> <br>
-        <%= f.submit "Submit" %>
-
+        <button type="submit" class="signup">Signup</button>
       <% end %>
 
     </div>
 
     <div role="tabpanel" class="tab-pane fade" id="login">
       <%= form_tag '/login' do %>
-
         Email: <%= text_field_tag :email %> <br>
-        Password: <%= password_field_tag :password_digest %> <br>
-        <%= submit_tag "Submit" %>
-
+        Password: <%= password_field_tag :password %> <br>
+        <button type="submit" class="login">Login</button>
       <% end %>
 
     </div>
   </div>
-
 </div>

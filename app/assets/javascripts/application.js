@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
+
 "use strict";
 
 $(document).ready(function(){
@@ -83,7 +84,7 @@ $(document).ready(function(){
       },
       error: function () { alert('double check input!') },
       success: function(data){
-        debugger
+        // debugger
         // var add_trip = $('<div />').append(data).find('div.trip_list').html();
         // $('div.trip_list').html(add_trip);
       }
@@ -91,6 +92,5 @@ $(document).ready(function(){
   });
 
 }); // ready
-
 
 

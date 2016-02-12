@@ -48,7 +48,7 @@ $(document).ready(function(){
         key: ''
       } ,     
       success: function(data){
-        console.log("is this working?")
+        console.log("Search is working?")
         results = data.results[0];
         address = results.formatted_address;
         place_id = results.place_id;
@@ -61,25 +61,27 @@ $(document).ready(function(){
   });
 
   $(document).on('submit', "#trip_form", function(e){
-    event.preventDefault();
+    console.log("submit hit!");
+    e.preventDefault();
     trip_date = $('#trip_date').val();
     trip_name = $('#trip_name').val();
     description = $('#trip_description').val();
-    // debugger
+    var trip_data = { trip_date: trip_date,
+                  name: trip_name,
+                  description: description,
+                  lng: lng,
+                  lat: lat
+              };
+    debugger
     $.ajax({
+      url: "/trips",
       type: "POST",
-      url: "/trips/create",
       data: {
-        trip: { trip_date: trip_date,
-                name: trip_name,
-                description: trip_description,
-                lng: lng,
-                lat: lat
-              }
+        trip: trip_data
       },
       error: function () { alert('double check input!') },
       success: function(data){
-        // debugger
+        debugger
         // var add_trip = $('<div />').append(data).find('div.trip_list').html();
         // $('div.trip_list').html(add_trip);
       }

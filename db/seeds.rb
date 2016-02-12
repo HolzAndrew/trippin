@@ -11,8 +11,8 @@ User.create([
 						{ name: 't1', email: 't1@gmail.com', password: 't1', image_url: 'http://images.clipartpanda.com/question-mark-black-and-white-Icon-round-Question_mark.jpg' }
 						 ])
 Trip.create([ 
-						{name: 'trip1',lng: '40.74',lat: '-73.98',trip_date: '2016-03-01',description: 'This is test comment, ba bab ab aba',user_id: 1},
-						{name: 'trip2',lng: '40.64',lat: '-73.88',trip_date: '2016-03-07',description: 'This is test comment, ba bab ab aba',user_id: 2}
+						{name: 'trip1',lng: '-73.98',lat: '40.74',trip_date: '2016-03-01',description: 'This is test comment, ba bab ab aba',user_id: 1},
+						{name: 'trip2',lng: '-73.88',lat: '40.64',trip_date: '2016-03-07',description: 'This is test comment, ba bab ab aba',user_id: 2}
 							])
 Comment.create([ 
 						{comment: 'This is test comment, ba bab ab aba', user_id: 1,trip_id: 1},

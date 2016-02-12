@@ -5,10 +5,6 @@ class TripsController < ApplicationController
   # GET /trips.json
   def index
     @trips = Trip.all
-
-
-
-
   end
 
   # GET /trips/1

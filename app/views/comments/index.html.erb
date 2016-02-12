@@ -16,11 +16,11 @@
     <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.comment %></td>
-        <td><%= comment.user %></td>
-        <td><%= comment.trip %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= comment.user.name %></td>
+        <td><%= comment.trip.name %></td>
+        <td><%= link_to 'Show', trip_comment_path(@trip,comment) %></td>
+        <td><%= link_to 'Edit', edit_trip_comment_path(@trip,comment) %></td>
+        <td><%= link_to 'Destroy', trip_comment_path(@trip,comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Comment', new_comment_path %>
+<%= link_to 'New Comment', new_trip_comment_path(@trip) %>

@@ -65,7 +65,7 @@ $(document).ready(function(){
     trip_date = $('#trip_date').val();
     trip_name = $('#trip_name').val();
     description = $('#trip_description').val();
-    debugger
+    // debugger
     $.ajax({
       type: "POST",
       url: "/trips/create",
@@ -79,7 +79,7 @@ $(document).ready(function(){
       },
       error: function () { alert('double check input!') },
       success: function(data){
-        debugger
+        // debugger
         // var add_trip = $('<div />').append(data).find('div.trip_list').html();
         // $('div.trip_list').html(add_trip);
       }

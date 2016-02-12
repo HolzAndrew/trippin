@@ -21,16 +21,19 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    user = User.new(user_params)
+    @user = User.new(user_params)
     # binding.pry
     respond_to do |format|
-      if user.save
+      if @user.save
+        UserMailer.welcome_email(@user).deliver
         format.html { render :index, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: user }
-        session[:user_id] = user.id
+        format.json { render :show, status: :created, location: @user }
+        session[:user_id] = @user.id
+        session[:user_name] = @user.name
+        session[:user_email] = @user.email
       else
         format.html { render :index }
-        format.json { render json: user.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,7 +48,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       session[:user_name] = user.name
       session[:user_email] = user.email
-      redirect_to '/'
+      redirect_to '/trips'
     else
     # If user's login doesn't work, send them back to the login form.
       redirect_to '/'

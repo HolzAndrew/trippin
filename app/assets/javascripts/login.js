@@ -46,6 +46,7 @@ $(document).on('click', 'button.login', function(e){
 			$('div.user_signup').hide();
 			var result = $('<div />').append(data).find('div.user_status').html();
       $('div.user_status').html(result);
+      document.location.replace("/trips");
 		}
 	})
 })

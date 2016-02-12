@@ -30,19 +30,8 @@ class TripsController < ApplicationController
   # POST /trips
   # POST /trips.json
   def create
-    # (trip)
-    # trip_data = JSON.parse(trip)
-    #     @trip = Trip.new
-    #     trip.lng = trip_data.lng
-    #     trip.lat =trip_data.lat
-    #     trip.date = params[:trip_date]
-    #     trip.name = params[:trip_name]
-    #     @trip.save!
-  
-
-  
     @trip = Trip.new(trip_params)
-
+    binding.pry
     respond_to do |format|
       if @trip.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
@@ -86,6 +75,8 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:name, :lat, :lng, :trip_date, :user_id)
+      binding.pry
+      params['trip']['user_id'] = session[:user_id]
+      params.require(:trip).permit(:name, :lat, :lng, :trip_date,  :description, :user_id)
     end
 end

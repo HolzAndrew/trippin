@@ -46,6 +46,8 @@ class UsersController < ApplicationController
       # Save the user id inside the browser cookie. This is how we keep the user 
       # logged in when they navigate around our website.
       session[:user_id] = user.id
+      session[:user_name] = user.name
+      session[:user_email] = user.email
       redirect_to '/'
     else
     # If user's login doesn't work, send them back to the login form.

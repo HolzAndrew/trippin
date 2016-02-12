@@ -7,13 +7,13 @@
 
 <p>
   <strong>User:</strong>
-  <%= @comment.user %>
+  <%= @comment.user.name %>
 </p>
 
 <p>
   <strong>Trip:</strong>
-  <%= @comment.trip %>
+  <%= @comment.trip.name %>
 </p>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Edit', edit_trip_comment_path(@trip, @comment) %> |
+<%= link_to 'Back', trip_comments_path %>

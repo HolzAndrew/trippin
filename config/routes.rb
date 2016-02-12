@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   get '/welcome/index'
 
   resources :invitations
-  resources :comments
   resources :locations
-  resources :trips
+  resources :trips do
+    resources :comments
+  end
   
   resources :users
   post '/signup' => 'users#create'

@@ -5,9 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Email</th>
-      <th>Accept</th>
       <th>Trip</th>
+      <th>From Who</th>
+      <th>Contact</th>
+      <th>Accept</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,11 +16,10 @@
   <tbody>
     <% @invitations.each do |invitation| %>
       <tr>
-        <td><%= invitation.email %></td>
-        <td><%= invitation.accept %></td>
-        <td><%= invitation.trip %></td>
+        <td><%= invitation.trip.name %></td>
+        <td><%= invitation.user_name %></td>
+        <td><%= invitation.user_email %></td>
         <td><%= link_to 'Show', invitation %></td>
-        <td><%= link_to 'Edit', edit_invitation_path(invitation) %></td>
         <td><%= link_to 'Destroy', invitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

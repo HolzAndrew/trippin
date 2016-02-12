@@ -4,7 +4,8 @@ class InvitationsController < ApplicationController
   # GET /invitations
   # GET /invitations.json
   def index
-    @invitations = Invitation.all
+    @invitations = Invitation.where(email: session[:user_email])
+    binding.pry
   end
 
   # GET /invitations/1

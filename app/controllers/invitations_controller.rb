@@ -3,10 +3,7 @@ class InvitationsController < ApplicationController
 
   # GET /invitations
   # GET /invitations.json
-  def index
-    @invitations = Invitation.where(email: session[:user_email])
-    binding.pry
-  end
+  
 
   # GET /invitations/1
   # GET /invitations/1.json
@@ -17,7 +14,7 @@ class InvitationsController < ApplicationController
   def new
     @invitation = Invitation.new
   end
-
+ 
   # GET /invitations/1/edit
   def edit
   end
@@ -40,11 +37,12 @@ class InvitationsController < ApplicationController
 
   # PATCH/PUT /invitations/1
   # PATCH/PUT /invitations/1.json
-  def update
+  def accept
     respond_to do |format|
       if @invitation.update(invitation_params)
         format.html { redirect_to @invitation, notice: 'Invitation was successfully updated.' }
         format.json { render :show, status: :ok, location: @invitation }
+        @invitation.destroy
       else
         format.html { render :edit }
         format.json { render json: @invitation.errors, status: :unprocessable_entity }
@@ -54,7 +52,7 @@ class InvitationsController < ApplicationController
 
   # DELETE /invitations/1
   # DELETE /invitations/1.json
-  def destroy
+  def decline
     @invitation.destroy
     respond_to do |format|
       format.html { redirect_to invitations_url, notice: 'Invitation was successfully destroyed.' }

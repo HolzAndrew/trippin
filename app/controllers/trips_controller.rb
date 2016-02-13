@@ -4,14 +4,16 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
+    @invitations = Invitation.where(email: session[:user_email])
     trip_user_lists = TripUserList.all
-    @trips = Trip.joins(:trip_user_lists).where("trip_user_lists.user_id = session[:user_id]")
-    binding.pry
+    @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
+    # binding.pry
   end
 
   # GET /trips/1
   # GET /trips/1.json
   def show
+    @invitations = Invitation.where(email: session[:user_email])
     @trip = Trip.find params[:id]
 
   end

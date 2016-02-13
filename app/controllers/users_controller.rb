@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     # session[:user_id] = nil
     # binding.pry
     @user = User.new
+    @invitations = Invitation.where(email: session[:user_email])
   end
 
   # GET /users/1

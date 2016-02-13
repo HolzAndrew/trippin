@@ -4,11 +4,10 @@ class UserMailer < ApplicationMailer
 
 	def welcome_email(user)
 		@user = user
-		@url = "http://localhost3000/login"
-		binding.pry
-		mail to: @user.email, subject: "Welcome to Trippr!"
+		@url = "http://localhost3000"
+		# binding.pry
+		mail to: @user.email, subject: "Welcome to Day Trippr!"
 	end
 
-
-
 end
+ 

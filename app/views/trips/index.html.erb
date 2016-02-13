@@ -5,6 +5,7 @@
   var map;
 
   function initMap() {
+
     var myLatLng = {lat: 40.7127, lng: -73.9059};
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -33,32 +34,10 @@
     <button type="submit" id="trip_search" class="pure-button">Search</button>
 </form>
 
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Create Trips
-    <span class="caret"></span>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <form class="trip_form" id="trip_form" method = "POST">
-        <label>Trip Date:</label>
-        <input type="text" class="trip_date" id="trip_date"><br>
-        <label>Trip Name:</label>
-        <input type="text" class="trip_name" id="trip_name"><br>
-        <label>Trip Description:</label>
-        <input type="text" class="trip_description" id="trip_description"><br>
-        <button type="submit" id="create_trip" class="create_trip">Create</button>
-    </form>
-  </div>
-</div>
 
 
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Trip List
-    <span class="caret"></span>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <table class="table table-hover">
+<div class="trip_list">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>Name</th>
@@ -82,5 +61,19 @@
       <% end %>
     </tbody>
   </table>
-  </div>
 </div>
+
+<div class="trip_form">
+  <form class="trip_form" id="trip_form" method = "POST">
+      <label>Trip Date:</label>
+      <input type="text" class="trip_date" id="trip_date"><br>
+      <label>Trip Name:</label>
+      <input type="text" class="trip_name" id="trip_name"><br>
+      <label>Trip Description:</label>
+      <input type="text" class="trip_description" id="trip_description"><br>
+      <button type="submit" id="create_trip" class="create_trip">Create</button>
+  </form>
+</div>
+
+
+

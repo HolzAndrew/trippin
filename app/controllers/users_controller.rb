@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       session[:user_name] = user.name
       session[:user_email] = user.email
-      redirect_to '/'
+      redirect_to '/trips'
     else
     # If user's login doesn't work, send them back to the login form.
       redirect_to '/'

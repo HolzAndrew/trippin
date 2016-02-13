@@ -4,7 +4,31 @@ html, body {
   padding: 0;
 }
 
-#map { 
-  height: 60%;
-  width: 50%;
+#map {
+	position: relative;
+  height: 70%;
+  width: 75%;
+  top: 5%;
+	left: 10%;
+} 
+
+form.trip_search {
+	position: absolute;
+  top: 10%;
+	left: 55%;
 }
+
+form.dropdown {
+	position: relative;
+  top: 20%;
+	left: 20%;
+	background-color: white;
+}
+
+form.trip_list {
+	position: absolute;
+  top: 20%;
+	left: 20%;
+}
+
+

@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   get '/welcome/index'
 
   resources :invitations
-  resources :locations
+  
   resources :trips do
     resources :comments
+    resources :locations
   end
   
   resources :users

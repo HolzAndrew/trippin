@@ -4,7 +4,9 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
+
     @trips = Trip.where(params['user_id'])      
+
   end
 
   # GET /trips/1
@@ -27,7 +29,7 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
-    binding.pry
+    # binding.pry
     respond_to do |format|
       if @trip.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
@@ -71,7 +73,7 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      binding.pry
+      # binding.pry
       params['trip']['user_id'] = session[:user_id]
       params.require(:trip).permit(:name, :lat, :lng, :trip_date,  :description, :user_id)
     end

@@ -120,7 +120,7 @@ $(document).on('submit', ".location_search", function(e) {
         loc_lat = loc_results.geometry.location.lat;
         loc_lng = loc_results.geometry.location.lng;
         moveMap_loc(loc_lat,loc_lng);
-        return address, loc_lng, loc_lat;
+        return loc_address, loc_lng, loc_lat;
 
       }
     })
@@ -134,7 +134,7 @@ $(document).on('submit', ".location_search", function(e) {
       }//moveMap_loc
 
     function make_marker (loc_lat,loc_lng){
-    var myLocLatLng = {lat: lat, lng: lng};
+    var myLocLatLng = {lat: loc_lat, lng: loc_lng};
     var marker = new google.maps.Marker({
           position: myLocLatLng,
           map: map,
@@ -144,25 +144,31 @@ $(document).on('submit', ".location_search", function(e) {
 
 
   $(document).on('submit', "#location_form", function(e){
+    debugger
     event.preventDefault();
-    address = $('#location_address').val();
+    //address = $('#location_address').val();
     venue_notes = $('#location_notes').val();
-
+    var location_hash= {
+                address: loc_address,
+                venue: venue_notes,
+                loc_lng: loc_lng,
+                loc_lat: loc_lat,
+                trip_id: "7",
+                user_id: "1",
+                };
     debugger
     $.ajax({
       type: "POST",
-      url: "/locations/create",
+      url: "/locations",
       data: {
-        trip: { address: address,
-                venue: venue_notes,
-                lng: loc_lng,
-                lat: loc_lat
-              }
+        location: location_hash
+              },
       },
     
 
       error: function () { alert('double check input!') },
-      success: function(data){
+      success: function(data){ console.log("success-ish")
+          debugger
           make_marker(loc_lat,loc_lng)
         // debugger
         // var add_trip = $('<div />').append(data).find('div.trip_list').html();

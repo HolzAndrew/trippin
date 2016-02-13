@@ -8,7 +8,7 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: <%= @trip.lat %>, lng: <%= @trip.lng %>},
-    zoom: 8
+    zoom: 15
   });
 }
 

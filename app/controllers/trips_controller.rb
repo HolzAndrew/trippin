@@ -7,7 +7,6 @@ class TripsController < ApplicationController
     @invitations = Invitation.where(email: session[:user_email])
     trip_user_lists = TripUserList.all
     @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
-    # binding.pry
   end
 
   # GET /trips/1

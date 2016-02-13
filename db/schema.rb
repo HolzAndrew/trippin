@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212152357) do
+ActiveRecord::Schema.define(version: 20160213173331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160212152357) do
   add_index "invitations", ["trip_id"], name: "index_invitations_on_trip_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
-    t.string   "loc_long"
+    t.string   "loc_lng"
     t.string   "loc_lat"
     t.string   "address"
     t.string   "venue"

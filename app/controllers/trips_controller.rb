@@ -5,24 +5,13 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-
-    @trips = Trip.where(params['user_id'])
-    # @map = GMaps.new(div: '#map', lat: 40.7127, lng: -73.9059)
-    # @map.addMarker(lat: 40.7127,
-    #            lng: -73.9059,
-    #            title: 'Lima',
-    #            click: GMaps::JS["function(e) { alert('You clicked in this marker'); }"])
-    # @map.addMarker(lat: 40.7127,
-    #            lng: -73.9059,
-    #            title: 'Marker with InfoWindow',
-    #            infoWindow: {
-    #              content: '<p>HTML Content</p>'
-    #            })
-
+    trip_user_lists = TripUserList.all
+    @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
   end
   # GET /trips/1
   # GET /trips/1.json
   def show
+    @invitations = Invitation.where(email: session[:user_email])
     @trip = Trip.find params[:id]
 
   end
@@ -40,14 +29,14 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
-    # binding.pry
     respond_to do |format|
       if @trip.save
+        @trip_user_list = TripUserList.new(trip_id: @trip.id,user_id: session[:user_id])
+        # binding.pry
+        @trip_user_list.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render :show, status: :created, location: @trip }
       else
-        format.html { render :new }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
+        format.html { render :index }
       end
     end
   end
@@ -58,10 +47,8 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.update(trip_params)
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trip }
       else
-        format.html { render :edit }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
+        format.html { render :index }
       end
     end
   end
@@ -72,7 +59,6 @@ class TripsController < ApplicationController
     @trip.destroy
     respond_to do |format|
       format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

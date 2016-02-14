@@ -1,13 +1,13 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
+
   # GET /trips
   # GET /trips.json
   def index
     trip_user_lists = TripUserList.all
     @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
   end
-
   # GET /trips/1
   # GET /trips/1.json
   def show
@@ -34,7 +34,7 @@ class TripsController < ApplicationController
         @trip_user_list = TripUserList.new(trip_id: @trip.id,user_id: session[:user_id])
         # binding.pry
         @trip_user_list.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        format.html { redirect_to "/trips/#{@trip.id}/locations", notice: 'Trip was successfully created.' }
       else
         format.html { render :index }
       end
@@ -70,7 +70,7 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      # binding.pry
+      binding.pry
       params['trip']['user_id'] = session[:user_id]
       params.require(:trip).permit(:name, :lat, :lng, :trip_date,  :description, :user_id)
     end

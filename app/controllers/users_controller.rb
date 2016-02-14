@@ -25,11 +25,11 @@ class UsersController < ApplicationController
     # binding.pry
     respond_to do |format|
       if @user.save
-        UserMailer.welcome_email(@user).deliver
+        # binding.pry
         session[:user_id] = @user.id
         session[:user_name] = @user.name
         session[:user_email] = @user.email
-        format.html { render :index, notice: 'User was successfully created.' }
+        format.html { redirect_to trips_path, notice: 'You successfully created your account.' }
       else
         format.html { render :index }
       end
@@ -40,16 +40,18 @@ class UsersController < ApplicationController
     user = User.find_by_email(params[:email])
     # If the user exists AND the password entered is correct.
     # binding.pry
-    if user && user.authenticate(params[:password])
-      # Save the user id inside the browser cookie. This is how we keep the user 
-      # logged in when they navigate around our website.
-      session[:user_id] = user.id
-      session[:user_name] = user.name
-      session[:user_email] = user.email
-      redirect_to '/trips'
-    else
-    # If user's login doesn't work, send them back to the login form.
-      redirect_to '/'
+    respond_to do |format|
+      if user && user.authenticate(params[:password])
+        # Save the user id inside the browser cookie. This is how we keep the user 
+        # logged in when they navigate around our website.
+        session[:user_id] = user.id
+        session[:user_name] = user.name
+        session[:user_email] = user.email
+        format.html { redirect_to trips_path, notice: 'You are successfully login.' }
+      else
+      # If user's login doesn't work, send them back to the login form.
+        redirect_to '/'
+      end
     end
   end
 

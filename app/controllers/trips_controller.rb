@@ -6,13 +6,7 @@ class TripsController < ApplicationController
   # GET /trips.json
   def index
     trip_user_lists = TripUserList.all
-<<<<<<< HEAD
-    @trips = Trip.all
-    #joins(:trip_user_lists).where("trip_user_lists.user_id = session[:user_id]")
-    binding.pry
-=======
     @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
->>>>>>> development
   end
   # GET /trips/1
   # GET /trips/1.json

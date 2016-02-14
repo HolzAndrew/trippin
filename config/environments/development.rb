@@ -25,7 +25,7 @@ Rails.application.configure do
     user_name: ENV["TRIP_GMAIL_USERNAME"],
     password:  ENV["TRIP_GMAIL_PASSWORD"]
   }
-
+ 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

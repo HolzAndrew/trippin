@@ -1,18 +1,17 @@
-<p id="notice"><%= notice %></p>
+<div class="user_profile">
+	  
+	<img src="<%= @user.image_url %>" class="thumbnail" height="178" >
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+	<p>
+	  <strong>Name:</strong>
+	  <%= @user.name %>
+	</p>
 
-<p>
-  <strong>Trips:</strong>
-  <% @user.trips.each do |trip| %>
-  <a href="/trips/<%= trip.id %>">Trip <%= trip.id %></a>
-  <% end %>
-</p>
+	<p>
+	  <strong>Email:</strong>
+	  <%= @user.email %>
+	</p>
 
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+	<%= link_to 'Back', trips_path %>
+</div>

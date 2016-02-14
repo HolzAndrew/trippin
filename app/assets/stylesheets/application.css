@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+html, body { 
+  height: 100%; 
+  margin: 0; 
+  padding: 0;
+}
+
+#map {
+	position: relative;
+  height: 60%;
+  width: 78%;
+  top: 8%;
+	left: 20%;
+} 
+

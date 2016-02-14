@@ -4,16 +4,23 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-
-    @trips = Trip.where(params['user_id'])      
-
+    #this piece of magic is a query to get the trips under only 1 user
+    trip_list = TripUserList.all
+    query =  TripUserList.where("user_id="+(session[:user_id]).to_s)
+    #angela_merkel will hold a trip id, just for shits and giigles
+    angela_merkel = query.to_a[0].trip_id
+    @trips = Trip.where("id="+angela_merkel.to_s)
+    # debugger
+    # @participants = trip_list.where("user_id="+(session[:user_id]).to_s)
   end
 
   # GET /trips/1
   # GET /trips/1.json
   def show
     @trip = Trip.find params[:id]
-
+    #angela_merkel will hold a trip id for 
+    angela_merkel = params[:id].to_s
+    trip_list = TripUserList.where("trip_id="+angela_merkel)
   end
 
   # GET /trips/new

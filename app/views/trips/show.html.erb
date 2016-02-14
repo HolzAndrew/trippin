@@ -2,6 +2,7 @@
 <% lat = 20 %>
 
 <div id="map"></div>
+
 <script type="text/javascript">
   var map;
   function initMap() {
@@ -10,10 +11,16 @@
       zoom: 15
     });
   }
+  // var marker = new google.maps.Marker({
+  //   var myLatLng = {lat: <%= @trip.lat %>, lng: <%= @trip.lng %>}
+  //     position: myLatLng,
+  //     map: map,
+  //     title: 'Hello World!'
+  //   });
 </script>
 
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["API_KEY"] %>&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfDMuS-T8EaT1i_72vzMG181Qm4GyXXos&callback=initMap">
 </script>
 
 <h3>Search for a location to add</h3>

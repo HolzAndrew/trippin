@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :trips do
     resources :comments
+    resources :locations
     
     post '/locations' => 'locations#create'
   end

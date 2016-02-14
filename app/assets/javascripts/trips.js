@@ -49,30 +49,27 @@ $(document).ready(function(){
     })
   }); //trip_search
 
-  $(document).on('submit', "#trip_form", function(e){
-    console.log("submit hit!");
-    e.preventDefault();
-    trip_date = $('#trip_date').val();
-    trip_name = $('#trip_name').val();
-    description = $('#trip_description').val();
-    var trip_data = { trip_date: trip_date,
-                  name: trip_name,
-                  description: description,
-                  lng: lng,
-                  lat: lat
-              };
-    debugger
-    $.ajax({
-      url: "/trips",
-      type: "POST",
-      data: {
-        trip: trip_data
-      },
-      error: function () { alert('double check input!') },
-      success: function(data){
-        // debugger
-      }
-    })
-  });//trip_form
+  // $(document).on('submit', "#trip_form", function(e){
+  //   console.log("submit hit!");
+  //   e.preventDefault();
+  //   trip_date = $('#trip_date').val();
+  //   trip_name = $('#trip_name').val();
+  //   description = $('#trip_description').val();
+  //   var trip_data = { trip_date: trip_date,
+  //                 name: trip_name,
+  //                 description: description,
+  //                 lng: lng,
+  //                 lat: lat
+  //             };
+  //   debugger
+  //   $.ajax({
+  //     url: "/trips",
+  //     type: "POST",
+  //     data: {
+  //       trip: trip_data
+  //     },
+  //     error: function () { alert('double check input!') }
+  //   })
+  // });//trip_form
 
 }); // ready

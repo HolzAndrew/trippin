@@ -1,31 +1,35 @@
-xclass LocationsController < ApplicationController
+class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   # GET /locations
   # GET /locations.json
   def index
     @locations = Location.all
+    @trip = Trip.find(params[:trip_id])
   end
 
   # GET /locations/1
   # GET /locations/1.json
   def show
+    @trip = Trip.find(params[:trip_id])
   end
 
   # GET /locations/new
   def new
     @location = Location.new
     @invitations = Invitation.where(email: session[:user_email])
-    @trip = Trip.find params[:id]
+    @trip = Trip.find(params[:trip_id])
   end
 
   # GET /locations/1/edit
   def edit
+    @trip = Trip.find(params[:trip_id])
   end
 
   # POST /locations
   # POST /locations.json
   def create
+    @trip = Trip.find(params[:trip_id])
     @location = Location.new(location_params)
 
     respond_to do |format|
@@ -42,6 +46,7 @@ xclass LocationsController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
+    @trip = Trip.find(params[:trip_id])
     respond_to do |format|
       if @location.update(location_params)
         format.html { redirect_to @location, notice: 'Location was successfully updated.' }
@@ -56,6 +61,7 @@ xclass LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.json
   def destroy
+    @trip = Trip.find(params[:trip_id])
     @location.destroy
     respond_to do |format|
       format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }

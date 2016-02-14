@@ -6,7 +6,6 @@ class UsersController < ApplicationController
     # session[:user_id] = nil
     # binding.pry
     @user = User.new
-    @invitations = Invitation.where(email: session[:user_email])
   end
 
   # GET /users/1
@@ -27,14 +26,12 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         UserMailer.welcome_email(@user).deliver
-        format.html { render :index, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
         session[:user_id] = @user.id
         session[:user_name] = @user.name
         session[:user_email] = @user.email
+        format.html { render :index, notice: 'User was successfully created.' }
       else
         format.html { render :index }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,12 +57,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_update_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -89,5 +84,9 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :image_url)
+    end
+
+    def user_update_params
+      params.require(:user).permit(:name, :email, :image_url)
     end
 end

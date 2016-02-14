@@ -28,3 +28,36 @@ html, body {
 	left: 20%;
 } 
 
+div.user_status {
+	width: auto;
+	position: absolute;
+	top: 1%;
+	right: 2%;
+}
+
+.app_name {
+	width: auto;
+	position: absolute;
+	top: 1%;
+	left: 40%;
+	font-family: Trebuchet MS Bold Italic;
+}
+
+div.user_invitation {
+	width: auto;
+	position: absolute;
+	top: 1%;
+	left: 2%;
+}
+
+span.glyphicon-envelope {
+  font-size: 50px;
+}
+
+div.alert {
+	position: absolute;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+  bottom: 0;
+}

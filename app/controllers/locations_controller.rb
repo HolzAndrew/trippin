@@ -15,6 +15,8 @@ xclass LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
+    @invitations = Invitation.where(email: session[:user_email])
+    @trip = Trip.find params[:id]
   end
 
   # GET /locations/1/edit

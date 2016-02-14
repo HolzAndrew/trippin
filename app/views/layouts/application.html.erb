@@ -9,34 +9,45 @@
 </head>
 <body>
 
-<div class="user_status">
-  <% if current_user %>
-     <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <img id="user_status" src=<%= current_user.image_url %> class="img-circle" height="42" width="42" >
-        <%= current_user.name %>
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><a href="/users/<%= current_user.id %>">Show Profile</a></li>
-        <li><a href="/users/<%= current_user.id %>/edit">Edit Profile</a></li>
-        <li><%= link_to "Logout", '/logout' %></li>
-      </ul>
-    </div>
-  <% end %>  
-</div>   
+  <div class="user_status">
+    <% if current_user %>
+       <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <img id="user_status" src=<%= current_user.image_url %> class="img-circle" height="42" width="42" >
+          <%= current_user.name %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a href="/users/<%= current_user.id %>">Show Profile</a></li>
+          <li><a href="/users/<%= current_user.id %>/edit">Edit Profile</a></li>
+          <li><%= link_to "Logout", '/logout' %></li>
+        </ul>
+      </div>
+    <% end %>  
+  </div> 
 
-<div class="user_invitation">
-  <% if current_user %>
-    <button class="btn btn-default" type="button" id="user_invitation" data-toggle="" aria-haspopup="true" aria-expanded="true">
-      <span class="glyphicon glyphicon-envelope"></span>
-    </button>
-  <% end %>  
-</div>
+  <div class="app_name">
+  	<h1> DAY TRIPPR </h1>
+  </div>  
+
+  <div class="user_invitation">
+    <% if current_user %>
+    <a href="/invitations">    
+      <button type="button" id="user_invitation">
+        <span class="glyphicon glyphicon-envelope"></span>
+      </button>
+    </a>
+    <% end %> 
+  </div>
 
 <%= yield %>
 
-
+<% if notice %>
+  <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong><%= notice %></strong>
+  </div>
+<% end %>
 
 </body>
 </html>

@@ -25,15 +25,13 @@ class UsersController < ApplicationController
     # binding.pry
     respond_to do |format|
       if @user.save
-        UserMailer.welcome_email(@user).deliver
-        format.html { render :index, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        # binding.pry
         session[:user_id] = @user.id
         session[:user_name] = @user.name
         session[:user_email] = @user.email
+        format.html { redirect_to trips_path, notice: 'You successfully created your account.' }
       else
         format.html { render :index }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,16 +40,18 @@ class UsersController < ApplicationController
     user = User.find_by_email(params[:email])
     # If the user exists AND the password entered is correct.
     # binding.pry
-    if user && user.authenticate(params[:password])
-      # Save the user id inside the browser cookie. This is how we keep the user 
-      # logged in when they navigate around our website.
-      session[:user_id] = user.id
-      session[:user_name] = user.name
-      session[:user_email] = user.email
-      redirect_to '/trips'
-    else
-    # If user's login doesn't work, send them back to the login form.
-      redirect_to '/'
+    respond_to do |format|
+      if user && user.authenticate(params[:password])
+        # Save the user id inside the browser cookie. This is how we keep the user 
+        # logged in when they navigate around our website.
+        session[:user_id] = user.id
+        session[:user_name] = user.name
+        session[:user_email] = user.email
+        format.html { redirect_to trips_path, notice: 'You are successfully login.' }
+      else
+      # If user's login doesn't work, send them back to the login form.
+        redirect_to '/'
+      end
     end
   end
 
@@ -59,12 +59,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_update_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -88,5 +86,9 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :image_url)
+    end
+
+    def user_update_params
+      params.require(:user).permit(:name, :email, :image_url)
     end
 end

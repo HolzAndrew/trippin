@@ -20,7 +20,11 @@ Comment.create([
 							])
 Invitation.create([ 
 						{email: 't1@gmail.com',trip_id: 1, user_name: 't2',user_email: 't2@gmail.com'},
-						{email: 't2@gmail.com',trip_id: 2, user_name: 't1',user_email: 't1@gmail.com'}
+						{email: 't1@gmail.com',trip_id: 2, user_name: 't2',user_email: 't2@gmail.com'},
+						{email: 't2@gmail.com',trip_id: 1, user_name: 't2',user_email: 't2@gmail.com'},
+						{email: 't2@gmail.com',trip_id: 2, user_name: 't1',user_email: 't1@gmail.com'},
+						{email: 't3@gmail.com',trip_id: 1, user_name: 't1',user_email: 't1@gmail.com'},
+						{email: 't3@gmail.com',trip_id: 2, user_name: 't2',user_email: 't2@gmail.com'}
 							])
 TripUserList.create([ 
 						{user_id: 1, trip_id: 1},

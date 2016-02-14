@@ -1,14 +1,25 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
+
   # GET /trips
   # GET /trips.json
   def index
 
-    @trips = Trip.where(params['user_id'])      
+    @trips = Trip.where(params['user_id'])
+    # @map = GMaps.new(div: '#map', lat: 40.7127, lng: -73.9059)
+    # @map.addMarker(lat: 40.7127,
+    #            lng: -73.9059,
+    #            title: 'Lima',
+    #            click: GMaps::JS["function(e) { alert('You clicked in this marker'); }"])
+    # @map.addMarker(lat: 40.7127,
+    #            lng: -73.9059,
+    #            title: 'Marker with InfoWindow',
+    #            infoWindow: {
+    #              content: '<p>HTML Content</p>'
+    #            })
 
   end
-
   # GET /trips/1
   # GET /trips/1.json
   def show

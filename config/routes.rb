@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   
   resources :trips do
     resources :comments
-    resources :locations
+    
+    post '/locations' => 'locations#create'
   end
   
   resources :users
@@ -17,9 +18,7 @@ Rails.application.routes.draw do
   get '/login' => 'users#index'
   post '/login' => 'users#login'
   get '/logout' => 'users#destroy'
-
-  resources :locations
-  post '/locations' => 'locations#create'
+  
   
 
   # The priority is based upon order of creation: first created -> highest priority.

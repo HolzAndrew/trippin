@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= gmaps
 //= require_tree .
+
 
 
 "use strict";
@@ -98,7 +100,16 @@ $(document).ready(function(){
   });
 
 
-
+// map.addMarker({
+//   lat: -12.043333,
+//   lng: -77.028333,
+//   title: 'Lima',
+//   infoWindow: {
+//   content: '<p>HTML Content</p>',
+//   click: function(e) {
+//     alert('You clicked in this marker');
+//   }
+// });
 
 $(document).on('submit', ".location_search", function(e) {
     e.preventDefault();
@@ -153,13 +164,14 @@ $(document).on('submit', ".location_search", function(e) {
                 venue: venue_notes,
                 loc_lng: loc_lng,
                 loc_lat: loc_lat,
-                trip_id: "7",
-                user_id: "1",
+                trip_id: @trip.id,
+                user_id: 1,
                 };
+    var location_url = "/trips/"+ @trip.id +"locations"
     debugger
     $.ajax({
       type: "POST",
-      url: "/locations",
+      url: location_url,
       data: {
         location: location_hash
               },

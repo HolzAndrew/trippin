@@ -65,6 +65,8 @@ GEM
     execjs (2.6.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gmaps-rails (0.0.2)
+      rails
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -174,6 +176,7 @@ DEPENDENCIES
   better_errors
   byebug
   coffee-rails (~> 4.1.0)
+  gmaps-rails
   httparty
   jbuilder (~> 2.0)
   jquery-rails

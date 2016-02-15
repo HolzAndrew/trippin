@@ -5,7 +5,7 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-<<<<<<< HEAD
+
     #this piece of magic is a query to get the trips under only 1 user
     trip_list = TripUserList.all
     query =  TripUserList.where("user_id="+(session[:user_id]).to_s)
@@ -16,10 +16,9 @@ class TripsController < ApplicationController
     # @participants = trip_list.where("user_id="+(session[:user_id]).to_s)
 
     @invitations = Invitation.where(email: session[:user_email])
-=======
->>>>>>> d4da9cfd1882148aae80aa61cb0da2193a697462
-    trip_user_lists = TripUserList.all
-    @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
+
+    #trip_user_lists = TripUserList.all
+    #@trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
 
   end
   # GET /trips/1

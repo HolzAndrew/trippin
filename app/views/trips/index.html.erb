@@ -1,29 +1,61 @@
+<%= content_tag :div, class: "trips_information", data: {trips: @trips} do %>
+<% end %>
 
 <script type="text/javascript">
 
   var map;
+  var newyork_area = {lat: 40.7127, lng: -73.9059};
+  var markers = [];
+  var myLatLng = [];
+  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var labelIndex = 0;
+
+  var trips_information = $('.trips_information').data('trips');
+
+  for (var i = 0; i < trips_information.length; i++) {
+    var latLng = {lat: parseFloat(trips_information[i].lat), lng: parseFloat(trips_information[i].lng)};
+    myLatLng.push(latLng);
+  };
 
   function initMap() {
-
-    var myLatLng = {lat: 40.7127, lng: -73.9059};
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12,
-      center: myLatLng
-    });
-
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      title: 'Hello World!'
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 11,
+      center: newyork_area
     });
   }
+
+  function drop() {
+    clearMarkers();
+    for (var i = 0; i < myLatLng.length; i++) {
+      addMarkerWithTimeout(myLatLng[i], i * 200);
+    }
+  }
+
+  function addMarkerWithTimeout(position, timeout) {
+    window.setTimeout(function() {
+      markers.push(new google.maps.Marker({
+        position: position,
+        map: map,
+        label: labels[labelIndex++ % labels.length],
+        animation: google.maps.Animation.DROP
+      }));
+    }, timeout);
+  }
+
+  function clearMarkers() {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(null);
+    }
+    markers = [];
+  }
+
+  document.onload = drop();
 
 </script>
 
 <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfDMuS-T8EaT1i_72vzMG181Qm4GyXXos&callback=initMap">
-</script> 
+</script>
 
 <div id="map">
 </div>
@@ -63,15 +95,16 @@
 </div>
 
 <div class="trip_form">
-  <form class="trip_form" id="trip_form" method = "POST">
-      <label>Trip Date:</label>
-      <input type="text" class="trip_date" id="trip_date"><br>
-      <label>Trip Name:</label>
-      <input type="text" class="trip_name" id="trip_name"><br>
-      <label>Trip Description:</label>
-      <input type="text" class="trip_description" id="trip_description"><br>
-      <button type="submit" id="create_trip" class="create_trip">Create</button>
-  </form>
+
+  <%= form_for :trip, url: '/trips' do |f| %>
+    Name: <%= f.text_field :name %> <br>
+    Lat: <%= f.text_field :lat %> <br>
+    Lng: <%= f.text_field :lng %> <br>
+    Description: <%= f.text_field :description %> <br>
+    Trip_date: <%= f.text_field :trip_date %> <br>
+    <button type="submit" id="create_trip" class="create_trip">Create</button>
+  <% end %>
+
 </div>
 
 

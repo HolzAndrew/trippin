@@ -13,8 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= gmaps
 //= require_tree .
 
+<<<<<<< HEAD
 "use strict";
 
 $(document).ready(function(){
@@ -171,3 +173,5 @@ $(document).on('submit', ".location_search", function(e) {
   });
 }); // ready
 >>>>>>> 8c6578a3ee24a5e00b3a5f7135bf33259f5b53fc
+=======
+>>>>>>> d4da9cfd1882148aae80aa61cb0da2193a697462

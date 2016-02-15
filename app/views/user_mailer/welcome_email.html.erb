@@ -8,36 +8,11 @@
 <style>table.facebook td{background:#3b5998;border-color:#2d4473;}table.facebook:hover td{background:#2d4473!important;}table.twitter td{background:#00acee;border-color:#0087bb;}table.twitter:hover td{background:#0087bb!important;}table.google-plus td{background-color:#DB4A39;border-color:#CC0000;}table.google-plus:hover td{background:#CC0000!important;}.template-label{color:#ffffff;font-weight:bold;font-size:11px;}.callout .wrapper{padding-bottom:20px;}.callout .panel{background:#ECF8FF;border-color:#b9e5ff;}.header{background:#999999;}.footer .wrapper{background:#ebebeb;}.footer h5{padding-bottom:10px;}table.columns .text-pad{padding-left:10px;padding-right:10px;}table.columns .left-text-pad{padding-left:10px;}table.columns .right-text-pad{padding-right:10px;}@media only screen and (max-width: 600px) {table[class="body"] .right-text-pad{padding-left:10px!important;}table[class="body"] .left-text-pad{padding-right:10px!important;}}</style>
 </head>
 <body>
-<h1>Welcome to daytrippr.com, <%= @user.name %></h1>
+<h1>Welcome to Day Trippr!</h1>
 <table class="body">
 <tr>
 <td class="center" align="center" valign="top">
 <center>
-<table class="row header">
-<tr>
-<td class="center" align="center">
-<center>
-<table class="container">
-<tr>
-<td class="wrapper last">
-<table class="twelve columns">
-<tr>
-<td class="six sub-columns">
-<img src="http://placehold.it/200x50">
-</td>
-<td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
-<span class="template-label">BASIC</span>
-</td>
-<td class="expander"></td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-</center>
-</td>
-</tr>
-</table>
 <table class="container">
 <tr>
 <td>
@@ -48,13 +23,8 @@
 <tr>
 <td>
   <p>
-    You have successfully signed up to trippr.com,
-    your username is: <%= @user.email %>.<br>
+    Your friend <%= @invitation.user_name %> is using our website to create an awesome trip and want to invite you to join the trip!
   </p>
-  <p>
-    To login to the site, just follow this link: <%= @url %>.
-  </p>
-  <p>Thanks for joining and have a great day!</p>
 </td>
 <td class="expander"></td>
 </tr>
@@ -68,81 +38,27 @@
 <table class="twelve columns">
 <tr>
 <td class="panel">
-<p>Phasellus dictum sapien a neque luctus cursus. Pellentesque sem dolor, fringilla et pharetra vitae. <a href="#">Click it! »</a></p>
+<p>You are almost there! Just visit our website in your browser. <a href="<%= @url %>">Click it! »</a></p>
 </td>
 <td class="expander"></td>
 </tr>
 </table>
 </td>
-</tr>
-</table>
-<table class="row footer">
-<tr>
-<td class="wrapper">
-<table class="six columns">
-<tr>
-<td class="left-text-pad">
-<h5>Connect With Us:</h5>
-<table class="tiny-button facebook">
-<tr>
-<td>
-<a href="#">Facebook</a>
-</td>
-</tr>
-</table>
-<br>
-<table class="tiny-button twitter">
-<tr>
-<td>
-<a href="#">Twitter</a>
-</td>
-</tr>
-</table>
-<br>
-<table class="tiny-button google-plus">
-<tr>
-<td>
-<a href="#">Google +</a>
-</td>
-</tr>
-</table>
-</td>
-<td class="expander"></td>
 </tr>
 </table>
 </td>
 <td class="wrapper last">
-<table class="six columns">
-<tr>
-<td class="last right-text-pad">
-<h5>Contact Info:</h5>
-<p>Phone: 408.341.0600</p>
-<p>Email: <a href="/cdn-cgi/l/email-protection#59312a3c353d3637192d2b38372d362b773a3634"><span class="__cf_email__" data-cfemail="305843555c545f5e704442515e445f421e535f5d">[email&#160;protected]</span><script data-cfhash='f9e31' type="text/javascript">
-/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("data-cfhash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}t.parentNode.removeChild(t);}}catch(u){}}()/* ]]> */</script></a></p>
-</td>
-<td class="expander"></td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
 <table class="row">
 <tr>
 <td class="wrapper last">
 <table class="twelve columns">
 <tr>
-<td align="center">
-<center>
-<p style="text-align:center;"><a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Unsubscribe</a></p>
-</center>
-</td>
 <td class="expander"></td>
 </tr>
 </table>
 </td>
 </tr>
 </table>
- 
 </td>
 </tr>
 </table>

@@ -3,60 +3,52 @@ class InvitationsController < ApplicationController
 
   # GET /invitations
   # GET /invitations.json
-  
-
-  # GET /invitations/1
-  # GET /invitations/1.json
-  def show
-  end
-
-  # GET /invitations/new
-  def new
+  def index
+    @invitations = Invitation.where(email: session[:user_email])
     @invitation = Invitation.new
-  end
- 
-  # GET /invitations/1/edit
-  def edit
+    @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
   end
 
   # POST /invitations
   # POST /invitations.json
   def create
     @invitation = Invitation.new(invitation_params)
-
     respond_to do |format|
       if @invitation.save
-        format.html { redirect_to @invitation, notice: 'Invitation was successfully created.' }
-        format.json { render :show, status: :created, location: @invitation }
+        if !User.find_by(email: @invitation.email)
+          UserMailer.welcome_email(@invitation).deliver
+        end
+        format.html { redirect_to invitations_url, notice: 'Invitation was successfully sent.' }
       else
-        format.html { render :new }
-        format.json { render json: @invitation.errors, status: :unprocessable_entity }
+        format.html { render :index }
       end
     end
   end
 
   # PATCH/PUT /invitations/1
   # PATCH/PUT /invitations/1.json
-  def accept
+  def update
+    # binding.pry
+    @trip_check = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id]).find_by(id: @invitation.trip_id)
+    @trip_user_list = TripUserList.new(trip_id: @invitation.trip_id,user_id: session[:user_id])
     respond_to do |format|
-      if @invitation.update(invitation_params)
-        format.html { redirect_to @invitation, notice: 'Invitation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @invitation }
+      if @trip_check
         @invitation.destroy
+        format.html { redirect_to invitations_url, notice: 'You have already attended this trip!' }
       else
-        format.html { render :edit }
-        format.json { render json: @invitation.errors, status: :unprocessable_entity }
+        @trip_user_list.save
+        @invitation.destroy
+        format.html { redirect_to trips_url, notice: 'Invitation was successfully accepted!' }
       end
     end
   end
 
   # DELETE /invitations/1
   # DELETE /invitations/1.json
-  def decline
+  def destroy
     @invitation.destroy
     respond_to do |format|
-      format.html { redirect_to invitations_url, notice: 'Invitation was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to invitations_url, notice: 'Invitation was successfully declined!' }
     end
   end
 
@@ -68,6 +60,8 @@ class InvitationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invitation_params
-      params.require(:invitation).permit(:email, :accept, :trip_id)
+      params['invitation']['user_name'] = session[:user_name]
+      params['invitation']['user_email'] = session[:user_email]
+      params.require(:invitation).permit(:email, :trip_id, :user_name, :user_email)
     end
 end

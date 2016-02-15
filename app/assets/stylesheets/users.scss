@@ -2,21 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div.user_status {
-	width: auto;
-	position: absolute;
-	top: 1%;
-	right: 2%;
-}
-
-.app_name {
-	width: auto;
-	position: absolute;
-	top: 1%;
-	left: 40%;
-	font-family: Trebuchet MS Bold Italic;
-}
-
 div.user_signup {
 	width: 170px;
 	position: absolute;
@@ -24,14 +9,16 @@ div.user_signup {
 	left: 40%;
 }
 
-div.user_invitation {
-	width: auto;
+div.user_profile {
+	width: 170px;
 	position: absolute;
-	top: 1%;
-	left: 2%;
+	top: 20%;
+	left: 40%;
 }
 
-.glyphicon {
-    font-size: 50px;
+div.edit_profile {
+	width: 170px;
+	position: absolute;
+	top: 20%;
+	left: 40%;
 }
-

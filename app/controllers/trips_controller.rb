@@ -1,9 +1,11 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
+
   # GET /trips
   # GET /trips.json
   def index
+<<<<<<< HEAD
     #this piece of magic is a query to get the trips under only 1 user
     trip_list = TripUserList.all
     query =  TripUserList.where("user_id="+(session[:user_id]).to_s)
@@ -14,11 +16,12 @@ class TripsController < ApplicationController
     # @participants = trip_list.where("user_id="+(session[:user_id]).to_s)
 
     @invitations = Invitation.where(email: session[:user_email])
+=======
+>>>>>>> d4da9cfd1882148aae80aa61cb0da2193a697462
     trip_user_lists = TripUserList.all
     @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
 
   end
-
   # GET /trips/1
   # GET /trips/1.json
   def show
@@ -42,14 +45,14 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
-    # binding.pry
     respond_to do |format|
       if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render :show, status: :created, location: @trip }
+        @trip_user_list = TripUserList.new(trip_id: @trip.id,user_id: session[:user_id])
+        # binding.pry
+        @trip_user_list.save
+        format.html { redirect_to "/trips/#{@trip.id}/locations", notice: 'Trip was successfully created.' }
       else
-        format.html { render :new }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
+        format.html { render :index }
       end
     end
   end
@@ -60,10 +63,8 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.update(trip_params)
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trip }
       else
-        format.html { render :edit }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
+        format.html { render :index }
       end
     end
   end
@@ -74,7 +75,6 @@ class TripsController < ApplicationController
     @trip.destroy
     respond_to do |format|
       format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -86,7 +86,7 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      # binding.pry
+      binding.pry
       params['trip']['user_id'] = session[:user_id]
       params.require(:trip).permit(:name, :lat, :lng, :trip_date,  :description, :user_id)
     end

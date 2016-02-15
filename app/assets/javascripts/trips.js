@@ -44,6 +44,8 @@ $(document).ready(function(){
         lat = results.geometry.location.lat;
         lng = results.geometry.location.lng;
         moveMap(lat,lng);
+        $('#trip_lat').val(lat);
+        $('#trip_lng').val(lng);
         return address, place_id, lng, lat;
       }
     })
@@ -68,7 +70,10 @@ $(document).ready(function(){
   //     data: {
   //       trip: trip_data
   //     },
-  //     error: function () { alert('double check input!') }
+  //     error: function () { alert('double check input!') },
+  //     success: function () {
+  //       document.location.replace("/trips");
+  //     }
   //   })
   // });//trip_form
 

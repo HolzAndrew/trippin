@@ -57,9 +57,13 @@ class TripsController < ApplicationController
   # DELETE /trips/1.json
   def destroy
     @trip_user_list = TripUserList.where(trip_id: @trip.id)
+    @locations = Location.where(trip_id: @trip.id)
     respond_to do |format|
       if @trip.user_id == session[:user_id]
         @trip_user_list.each do |e|
+          e.destroy
+        end
+        @locations.each do |e|
           e.destroy
         end
         @trip.destroy

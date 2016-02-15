@@ -5,16 +5,16 @@
 
   var map;
   var newyork_area = {lat: 40.7127, lng: -73.9059};
-  var markers = [];
-  var myLatLng = [];
-  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var labelIndex = 0;
+  var markers_trips = [];
+  var myLatLng_trips = [];
+  var labels_trip = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var labelIndex_trip = 0;
 
   var trips_information = $('.trips_information').data('trips');
 
   for (var i = 0; i < trips_information.length; i++) {
     var latLng = {lat: parseFloat(trips_information[i].lat), lng: parseFloat(trips_information[i].lng)};
-    myLatLng.push(latLng);
+    myLatLng_trips.push(latLng);
   };
 
   function initMap() {
@@ -26,27 +26,29 @@
 
   function drop() {
     clearMarkers();
-    for (var i = 0; i < myLatLng.length; i++) {
-      addMarkerWithTimeout(myLatLng[i], i * 200);
+    labelIndex_trip = 0;
+    labels_trip = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (var i = 0; i < myLatLng_trips.length; i++) {
+      addMarkerWithTimeout(myLatLng_trips[i], i * 200);
     }
   }
 
   function addMarkerWithTimeout(position, timeout) {
     window.setTimeout(function() {
-      markers.push(new google.maps.Marker({
+      markers_trips.push(new google.maps.Marker({
         position: position,
         map: map,
-        label: labels[labelIndex++ % labels.length],
+        label: labels_trip[labelIndex_trip++ % labels_trip.length],
         animation: google.maps.Animation.DROP
       }));
     }, timeout);
   }
 
   function clearMarkers() {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(null);
+    for (var i = 0; i < markers_trips.length; i++) {
+      markers_trips[i].setMap(null);
     }
-    markers = [];
+    markers_trips = [];
   }
 
   document.onload = drop();

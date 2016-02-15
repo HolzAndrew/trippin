@@ -10,20 +10,20 @@
 <script type="text/javascript">
   var map;
 
-  var markers=[];
-  var marker;
+  var markers_locations=[];
+  var marker_location;
   var addMarker;
-  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var labelIndex = 0;
+  var labels_location = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var labelIndex_location = 0;
   var loc_lat;
   var loc_lng;
-  var myLatLng=[];
+  var myLatLng_location=[];
 
   var locations_information = $('.locations_information').data('locations');
 
   for (var i = 0; i < locations_information.length; i++) {
     var latLng = {lat: parseFloat(locations_information[i].loc_lat), lng: parseFloat(locations_information[i].loc_lng)};
-    myLatLng.push(latLng);
+    myLatLng_location.push(latLng);
   };
 
   function initMap() {
@@ -42,16 +42,18 @@
 
   function drop() {
     clearMarkers();
-    for (var i = 0; i < myLatLng.length; i++) {
-      addMarkerWithTimeout(myLatLng[i], i * 200);
+    labelIndex_location = 0;
+    labels_location = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (var i = 0; i < myLatLng_location.length; i++) {
+      addMarkerWithTimeout(myLatLng_location[i], i * 200);
     }
   }
 
   function addMarkerWithTimeout(position, timeout) {
     window.setTimeout(function() {
-      markers.push(new google.maps.Marker({
+      markers_locations.push(new google.maps.Marker({
         position: position,
-        label: labels[labelIndex++ % labels.length],
+        label: labels_location[labelIndex_location++ % labels_location.length],
         map: map,
         animation: google.maps.Animation.DROP
       }));
@@ -59,10 +61,10 @@
   }
 
   function clearMarkers() {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(null);
+    for (var i = 0; i < markers_locations.length; i++) {
+      markers_locations[i].setMap(null);
     }
-    markers = [];
+    markers_locations = [];
   }
 
   document.onload = drop();
@@ -70,14 +72,14 @@
   function addMarker(location, map) {
     // Add the marker at the clicked location, and add the next-available label
     // from the array of alphabetical characters.
-      marker = new google.maps.Marker({
+      marker_location = new google.maps.Marker({
         position: location,
-        label: labels[labelIndex++ % labels.length],
+        label: labels_location[labelIndex_location++ % labels_location.length],
         map: map
       });
-      markers.push(marker);
-      loc_lat = marker.getPosition().lat();
-      loc_lng = marker.getPosition().lng();
+      markers_locations.push(marker_location);
+      loc_lat = marker_location.getPosition().lat();
+      loc_lng = marker_location.getPosition().lng();
       debugger
       $('#location_loc_lat').val(loc_lat);
       $('#location_loc_lng').val(loc_lng);

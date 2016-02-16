@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
   def index
     @trip = Trip.find(params[:trip_id])
     @comments = Comment.where(trip_id: params[:trip_id])
+    @num_of_comments = @comments.length
   end
  
   # GET /comments/1

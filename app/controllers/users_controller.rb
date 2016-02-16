@@ -36,9 +36,9 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path, notice: 'The email already exists.' }
       elsif check_name
         format.html { redirect_to users_path, notice: 'The name already exists.' }
-      elsif @user.password == ''
+      elsif params[:user][:password] == ''
         format.html { redirect_to users_path, notice: 'Please enter your password.' }
-      elsif @user.password != @user.password_confirmation
+      elsif params[:user][:password] != params[:user][:password_confirmation]
         format.html { redirect_to users_path, notice: 'Double check your password.' }
       elsif @user.save
         # binding.pry

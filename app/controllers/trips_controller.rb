@@ -9,6 +9,9 @@ class TripsController < ApplicationController
     @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
     @invitations = Invitation.where(email: session[:user_email])
     @num_of_invites = @invitations.length
+
+    #joins(:trip_user_lists).where("trip_user_lists.user_id = session[:user_id]")
+
   end
   # GET /trips/1
   # GET /trips/1.json

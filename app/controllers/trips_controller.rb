@@ -13,7 +13,6 @@ class TripsController < ApplicationController
   def show
     @invitations = Invitation.where(email: session[:user_email])
     @trip = Trip.find params[:id]
-
   end
 
   # GET /trips/new
@@ -28,6 +27,7 @@ class TripsController < ApplicationController
   # POST /trips
   # POST /trips.json
   def create
+    # binding.pry
     @trip = Trip.new(trip_params)
     respond_to do |format|
       if @trip.save
@@ -56,9 +56,21 @@ class TripsController < ApplicationController
   # DELETE /trips/1
   # DELETE /trips/1.json
   def destroy
-    @trip.destroy
+    @trip_user_list = TripUserList.where(trip_id: @trip.id)
+    @locations = Location.where(trip_id: @trip.id)
     respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+      if @trip.user_id == session[:user_id]
+        @trip_user_list.each do |e|
+          e.destroy
+        end
+        @locations.each do |e|
+          e.destroy
+        end
+        @trip.destroy
+        format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+      else
+        format.html { redirect_to trips_url, notice: 'You are not the creator of this trip.' }
+      end
     end
   end
 
@@ -70,7 +82,7 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      binding.pry
+      # binding.pry
       params['trip']['user_id'] = session[:user_id]
       params.require(:trip).permit(:name, :lat, :lng, :trip_date,  :description, :user_id)
     end

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :trips
   belongs_to :trip
   has_many :trips
+  has_many :comments
 
   has_secure_password
 end

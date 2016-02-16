@@ -78,3 +78,8 @@ footer {
   text-align: center;
   bottom: 0;
 }
+
+span.invite_badge {
+  position: relative;
+  bottom: 12px;
+} 

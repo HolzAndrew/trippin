@@ -29,7 +29,7 @@ html, body {
 	left: 30%;
 
   height: 60%;
-  width: 70%;
+  width: 73%;
   top: 8%;
 	left: 25%;
   margin-top: 6px;
@@ -77,4 +77,18 @@ div.alert {
 	margin: auto;
 	text-align: center;
   bottom: 0;
+}
+
+table.table {
+  text-align: center;
+  border: 1px solid black;
+  position: relative;
+  width: 73%;
+  top: 9%;
+  left: 25%;
+  border-radius: 1%;
+}
+
+th{
+  text-align: center;
 }

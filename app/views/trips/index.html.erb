@@ -32,7 +32,7 @@
     labelIndex_trip = 0;
     labels_trip = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     for (var i = 0; i < myLatLng_trips.length; i++) {
-      addMarkerWithTimeout(myLatLng_trips[i], i * 200);
+      addMarkerWithTimeout(myLatLng_trips[i], 200+i * 200);
     }
   }
 
@@ -74,39 +74,34 @@
     <input type="text" class="trip_search_input" id="trip_search_input">
     <button type="submit" id="trip_search" class="pure-button">Search</button>
 </form>
-
-<!-- <div class="panel panel-default">
-
-  <div class="panel-heading">My Trips</div>
-
-
-
-
-  <table class="table">
-    <th>Name</th>
+  <table class="table table-hover">
+        <th>Name</th>
         <th>Trip date</th>
-        <th>User</th>
-        <th>Description</th>
+        <th>Trip Creator</th>
+        <th>Details</th>
         <th colspan="3"></th>
+   
          <% @trips.each do |trip| %>
-        <td><%= trip.name %></td>
+         <tr>
+          <td><%= trip.name %></td>
           <td><%= trip.trip_date %></td>
           <td><%= trip.user.name %></td>
           <td><%= trip.description %></td>
+          <td><%= link_to 'Comment', trip_comments_path(trip) %><span class="badge">2</span></td>
           <td><%= link_to 'Show', trip_locations_path(trip) %></td>
           <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
           <% end %>
   </table>
-</div> -->
-<div class="panel panel-default">
+
+<!-- <div class="panel panel-default">
 <div class="panel-heading">My Trips</div>
-<!-- <div class="trip_list"> -->
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Trip date</th>
-        <th>User</th>
+        <th>Trip</th>
+        <th>Trip Date</th>
+        <th>Creator</th>
         <th>Description</th>
         <th colspan="3"></th>
       </tr>
@@ -119,13 +114,14 @@
           <td><%= trip.trip_date %></td>
           <td><%= trip.user.name %></td>
           <td><%= trip.description %></td>
+          <td><%= link_to 'Comment', trip_comments_path(trip) %><span class="badge">2</span></td>
           <td><%= link_to 'Show', trip_locations_path(trip) %></td>
           <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-</div>
+</div> -->
 <!-- </div> -->
 
 <div class="trip_form">

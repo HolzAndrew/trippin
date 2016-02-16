@@ -14,6 +14,17 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    authentication: "plain",
+    domain: "gmail.com",
+    enable_starttls_auto: true,
+    user_name: ENV["GMAIL_USERNAME"],
+    password:  ENV["GMAIL_PASSWORD"]
+  }
 
   
   # Enable Rack::Cache to put a simple HTTP cache in front of your application

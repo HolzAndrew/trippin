@@ -16,7 +16,7 @@ class InvitationsController < ApplicationController
     respond_to do |format|
       if @invitation.save
         if !User.find_by(email: @invitation.email)
-          UserMailer.welcome_email(@invitation).deliver
+          UserMailer.welcome_email(@invitation).deliver_now
         end
         format.html { redirect_to invitations_url, notice: 'Invitation was successfully sent.' }
       else

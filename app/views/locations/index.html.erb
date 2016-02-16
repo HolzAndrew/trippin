@@ -52,7 +52,7 @@
     labelIndex_location = 0;
     labels_location = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     for (var i = 0; i < myLatLng_location.length; i++) {
-      addMarkerWithTimeout(myLatLng_location[i], i * 200);
+      addMarkerWithTimeout(myLatLng_location[i], 200+i * 200);
     }
   }
 
@@ -87,7 +87,7 @@
       markers_locations.push(marker_location);
       loc_lat = marker_location.getPosition().lat();
       loc_lng = marker_location.getPosition().lng();
-      debugger
+      // debugger
       $('#location_loc_lat').val(loc_lat);
       $('#location_loc_lng').val(loc_lng);
     }//add markers

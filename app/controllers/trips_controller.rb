@@ -16,10 +16,7 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
-    @invitations = Invitation.where(email: session[:user_email])
-    @trip = Trip.find params[:id]
-    @invitations = Invitation.where(email: session[:user_email])
-    @num_of_invites = @invitations.length
+    redirect_to trips_path
   end
 
   # GET /trips/new
@@ -67,10 +64,10 @@ class TripsController < ApplicationController
     @locations = Location.where(trip_id: @trip.id)
     respond_to do |format|
       if @trip.user_id == session[:user_id]
-        @trip_user_list.each do |e|
+        @locations.each do |e|
           e.destroy
         end
-        @locations.each do |e|
+        @trip_user_list.each do |e|
           e.destroy
         end
         @trip.destroy

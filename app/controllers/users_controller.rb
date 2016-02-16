@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     # session[:user_id] = nil
     # binding.pry
     @user = User.new
+    @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
   end
 
   # GET /users/1
@@ -13,9 +15,13 @@ class UsersController < ApplicationController
   def show
     #@trips = Trip.find params[:user_id]
     @user = User.find(params[:id])
+    @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
   end
   # GET /users/1/edit
   def edit
+    @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
   end
 
   # POST /users
@@ -47,7 +53,7 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         session[:user_name] = user.name
         session[:user_email] = user.email
-        format.html { redirect_to trips_path, notice: 'You are successfully login.' }
+        format.html { redirect_to trips_path, notice: 'Login Successful' }
       else
       # If user's login doesn't work, send them back to the login form.
         redirect_to '/'

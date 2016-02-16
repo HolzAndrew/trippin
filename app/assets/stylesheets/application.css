@@ -54,7 +54,7 @@ span.glyphicon-envelope {
 
 #map {
 	position: relative;
-  height: 80%;
+  height: 78%;
   width: 100%;
 } 
 
@@ -63,5 +63,27 @@ div.alert {
 	width: 100%;
 	margin: auto;
 	text-align: center;
+  bottom: 0;
+}
+
+table.table {
+  text-align: center;
+  border: 1px solid black;
+  position: relative;
+  width: 73%;
+  top: 9%;
+  left: 25%;
+  border-radius: 1%;
+}
+
+th{
+  text-align: center;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  margin: auto 0;
+  text-align: center;
   bottom: 0;
 }

@@ -5,8 +5,14 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    trip_user_lists = TripUserList.all
-    @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
+     trip_list = TripUserList.all
+    query =  TripUserList.where("user_id="+(session[:user_id]).to_s)
+    #angela_merkel will hold a trip id, just for shits and giigles
+    angela_merkel = query.to_a[0].trip_id
+    @trips = Trip.where("id="+angela_merkel.to_s)
+    # debugger
+    # @participants = trip_list.where("user_id="+(session[:user_id]).to_s)
+  
   end
   # GET /trips/1
   # GET /trips/1.json

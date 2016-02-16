@@ -7,6 +7,7 @@ class UserMailer < ApplicationMailer
 		@url = "http://localhost:3000"
 		# binding.pry
 		mail to: @invitation.email, subject: "Welcome to Day Trippr!"
+
 	end
 
 end

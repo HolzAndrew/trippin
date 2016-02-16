@@ -8,6 +8,8 @@ class TripsController < ApplicationController
 
     trip_user_lists = TripUserList.all
     @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
+    @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
 
     #joins(:trip_user_lists).where("trip_user_lists.user_id = session[:user_id]")
 
@@ -18,6 +20,8 @@ class TripsController < ApplicationController
   def show
     @invitations = Invitation.where(email: session[:user_email])
     @trip = Trip.find params[:id]
+    @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
   end
 
   # GET /trips/new

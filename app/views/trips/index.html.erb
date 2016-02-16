@@ -1,3 +1,6 @@
+<ol class="breadcrumb">
+  <li class="active">My Trips</li>
+</ol>
 <%= content_tag :div, class: "trips_information", data: {trips: @trips} do %>
 <% end %>
 
@@ -61,15 +64,43 @@
 
 <div id="map">
 </div>
+<!-- <div class="trip_search">
+    <div class="input-group">
+      <input type="text" class="form-control" id="trip_search_input"placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" id="trip_search" type="button">Go!</button> -->
 
 <form class="trip_search">
     <input type="text" class="trip_search_input" id="trip_search_input">
     <button type="submit" id="trip_search" class="pure-button">Search</button>
 </form>
 
+<!-- <div class="panel panel-default">
+
+  <div class="panel-heading">My Trips</div>
 
 
-<div class="trip_list">
+
+
+  <table class="table">
+    <th>Name</th>
+        <th>Trip date</th>
+        <th>User</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+         <% @trips.each do |trip| %>
+        <td><%= trip.name %></td>
+          <td><%= trip.trip_date %></td>
+          <td><%= trip.user.name %></td>
+          <td><%= trip.description %></td>
+          <td><%= link_to 'Show', trip_locations_path(trip) %></td>
+          <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+  </table>
+</div> -->
+<div class="panel panel-default">
+<div class="panel-heading">My Trips</div>
+<!-- <div class="trip_list"> -->
   <table class="table table-hover">
     <thead>
       <tr>
@@ -95,6 +126,7 @@
     </tbody>
   </table>
 </div>
+<!-- </div> -->
 
 <div class="trip_form">
 

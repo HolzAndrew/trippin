@@ -6,6 +6,8 @@ class LocationsController < ApplicationController
     @locations = Location.where(trip_id: params[:trip_id])
     @trip = Trip.find(params[:trip_id])
     @location = Location.new
+    @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
   end
 
 

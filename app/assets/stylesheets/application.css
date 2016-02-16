@@ -22,10 +22,18 @@ html, body {
 
 #map {
 	position: relative;
+
   height: 50%;
   width: 50%;
   top: 15%;
 	left: 30%;
+
+  height: 60%;
+  width: 70%;
+  top: 8%;
+	left: 25%;
+  margin-top: 6px;
+>>>>>>> 6a5d47976a63305579c44a24bf39a9ae7ef573d8
 } 
 
 div.user_status {
@@ -34,19 +42,28 @@ div.user_status {
 	top: 1%;
 	right: 2%;
 }
-
+div.trip_name {
+  text-align: center;
+  margin-top: 6%;
+}
+div.name_div{
+  text-align: center;
+  width: 40%;
+  margin-left: 30%;
+  font-size: 25px;
+}
 .app_name {
 	width: auto;
 	position: absolute;
 	top: 1%;
-	left: 40%;
+	left: 42%;
 	font-family: Trebuchet MS Bold Italic;
 }
 
 div.user_invitation {
 	width: auto;
 	position: absolute;
-	top: 1%;
+	top: 6%;
 	left: 2%;
 }
 

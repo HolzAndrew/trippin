@@ -5,6 +5,7 @@ class InvitationsController < ApplicationController
   # GET /invitations.json
   def index
     @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
     @invitation = Invitation.new
     @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
   end

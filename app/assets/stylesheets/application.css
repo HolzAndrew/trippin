@@ -66,15 +66,6 @@ div.alert {
   bottom: 0;
 }
 
-table.table {
-  text-align: center;
-  border: 1px solid black;
-  position: relative;
-  width: 73%;
-  top: 9%;
-  left: 25%;
-  border-radius: 1%;
-}
 
 th{
   text-align: center;

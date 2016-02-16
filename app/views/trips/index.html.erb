@@ -92,6 +92,7 @@
             <th>Trip Date</th>
             <th>Creator</th>
             <th>Description</th>
+            <th>Comments</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -99,20 +100,19 @@
         <tbody>
           <% @trips.each do |trip| %>
             <tr>
-              <td><%= trip.name %></td>
+              <td><%= link_to trip.name , trip_locations_path(trip)%></td>
               <td><%= trip.trip_date %></td>
               <td><%= trip.user.name %></td>
               <td><%= trip.description %></td>
-              <td><%= link_to 'Comment', trip_comments_path(trip) %></td>
-              <td><%= link_to 'Show', trip_locations_path(trip) %></td>
-              <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><span class="badge"><%= link_to trip.comments.length, trip_comments_path(trip) %></span></td>
+              <td><%= link_to 'Remove Trip', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
     <!-- </div> -->
-
+ 
   </ul>
 </div>
 

@@ -19,11 +19,11 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    domain: "example.com",
-    authentication: "plain",
-    enable_starttls_auto: true,
+    domain: "gmail.com",
+    authentication: :plain,
     user_name: ENV["GMAIL_USERNAME"],
-    password:  ENV["GMAIL_PASSWORD"]
+    password:  ENV["GMAIL_PASSWORD"],
+    openssl_verify_mode: 'none'
   }
  
   # Print deprecation notices to the Rails logger.

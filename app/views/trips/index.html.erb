@@ -29,7 +29,7 @@
     labelIndex_trip = 0;
     labels_trip = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     for (var i = 0; i < myLatLng_trips.length; i++) {
-      addMarkerWithTimeout(myLatLng_trips[i], i * 200);
+      addMarkerWithTimeout(myLatLng_trips[i], 200+i * 200);
     }
   }
 
@@ -73,9 +73,9 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Trip date</th>
-        <th>User</th>
+        <th>Trip</th>
+        <th>Trip Date</th>
+        <th>Creator</th>
         <th>Description</th>
         <th colspan="3"></th>
       </tr>
@@ -88,6 +88,7 @@
           <td><%= trip.trip_date %></td>
           <td><%= trip.user.name %></td>
           <td><%= trip.description %></td>
+          <td><%= link_to 'Comment', trip_comments_path(trip) %></td>
           <td><%= link_to 'Show', trip_locations_path(trip) %></td>
           <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

@@ -1,5 +1,10 @@
-<p id="notice"><%= notice %></p>
-
+<ol class="breadcrumb">
+  <li><a href="/trips">My Trips</a></li>
+  <li><a href="/trips/<%= params[:trip_id]%>"><%= @trip.name %></a></li>
+  <li><a href="/trips/<%= params[:trip_id]%>/comments"><%= @trip.name %> Comments</a></li>
+  <li class="active">Comment</li>
+</ol>
+<div class="container">
 <p>
   <strong>Comment:</strong>
   <%= @comment.comment %>
@@ -14,6 +19,6 @@
   <strong>Trip:</strong>
   <%= @comment.trip.name %>
 </p>
-
 <%= link_to 'Edit', edit_trip_comment_path(@trip, @comment) %> |
 <%= link_to 'Back', trip_comments_path %>
+</div>

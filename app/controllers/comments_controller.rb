@@ -7,6 +7,8 @@ class CommentsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @comments = Comment.where(trip_id: params[:trip_id])
     @num_of_comments = @comments.length
+    @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
   end
  
   # GET /comments/1
@@ -14,18 +16,24 @@ class CommentsController < ApplicationController
   def show
     @trip = Trip.find(params[:trip_id])
     @comment = Comment.find(params[:id])
+    @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
   end
 
   # GET /comments/new
   def new
     @trip = Trip.find(params[:trip_id])
     @comment = Comment.new
+    @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
   end
  
   # GET /comments/1/edit
   def edit
     @trip = Trip.find(params[:trip_id])
     @comment = Comment.find(params[:id])
+    @invitations = Invitation.where(email: session[:user_email])
+    @num_of_invites = @invitations.length
   end
 
   # POST /comments

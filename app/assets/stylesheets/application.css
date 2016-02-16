@@ -36,7 +36,7 @@ html, body {
 
 #app_name {
 	width: auto;
-	margin-left: 25%;
+	margin-left: 31%;
 	font-family: Trebuchet MS Bold Italic;
 }
 
@@ -54,7 +54,7 @@ span.glyphicon-envelope {
 
 #map {
 	position: relative;
-  height: 78%;
+  height: 75%;
   width: 100%;
 } 
 
@@ -78,3 +78,8 @@ footer {
   text-align: center;
   bottom: 0;
 }
+
+span.invite_badge {
+  position: relative;
+  bottom: 12px;
+} 

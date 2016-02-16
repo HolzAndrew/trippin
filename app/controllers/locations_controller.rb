@@ -18,13 +18,6 @@ class LocationsController < ApplicationController
     @location.save
     @locations = Location.where(trip_id: params[:trip_id])
     redirect_to trip_locations_path(@trip,@locations)
-    # respond_to do |format|
-    #   if @location.save
-    #     format.html { redirect_to trip_locations_path(@trip,@locations), notice: 'Location was successfully created.' }
-    #   else
-    #     format.html { render :index }
-    #   end
-    # end
   end
 
   # DELETE /locations/1

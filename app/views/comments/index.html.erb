@@ -3,8 +3,11 @@
   <li><a href="/trips/<%= params[:trip_id]%>"><%= @trip.name %></a></li>
   <li class="active">Comments</li>
 </ol>
-
-<p id="notice"><%= notice %></p>
+  
+<center>
+<button type="button" class="btn btn-secondary"><%= link_to 'New Comment', new_trip_comment_path(@trip) %></button>
+  
+</center>
 <div class="comments">
 
     <% @comments.each do |comment| %>

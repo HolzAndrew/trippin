@@ -2,13 +2,11 @@
   <li><a href="/trips">My Trips</a></li>
   <li class="active"><%= @trip.name %></li>
 </ol>
+
 <%= content_tag :div, class: "locations_information", data: {locations: @locations} do %>
 <% end %>
-<div class = "trip_name">
-<div class = "name_div"><%= @trip.name.capitalize %></div>
-</div>
+
 <div id="map"></div>
-<!-- add badge for number of messages/invitations -->
 
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfDMuS-T8EaT1i_72vzMG181Qm4GyXXos&callback=initMap">

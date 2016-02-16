@@ -1,6 +1,7 @@
 <ol class="breadcrumb">
   <li class="active">My Trips</li>
 </ol>
+
 <%= content_tag :div, class: "trips_information", data: {trips: @trips} do %>
 <% end %>
 
@@ -22,7 +23,7 @@
 
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 11,
+      zoom: 10,
       center: newyork_area
     });
   }
@@ -75,71 +76,60 @@
     <button type="submit" id="trip_search" class="pure-button">Search</button>
 </form>
 
-<!-- <div class="panel panel-default">
+<div class="dropup trip_list">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <p>Trip List &#9776;<p>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    
+    <div class="panel panel-default">
+    <div class="panel-heading">My Trips</div>
+    <!-- <div class="trip_list"> -->
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Trip</th>
+            <th>Trip Date</th>
+            <th>Creator</th>
+            <th>Description</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-  <div class="panel-heading">My Trips</div>
-
-
-
-
-  <table class="table">
-    <th>Name</th>
-        <th>Trip date</th>
-        <th>User</th>
-        <th>Description</th>
-        <th colspan="3"></th>
-         <% @trips.each do |trip| %>
-        <td><%= trip.name %></td>
-          <td><%= trip.trip_date %></td>
-          <td><%= trip.user.name %></td>
-          <td><%= trip.description %></td>
-          <td><%= link_to 'Show', trip_locations_path(trip) %></td>
-          <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <tbody>
+          <% @trips.each do |trip| %>
+            <tr>
+              <td><%= trip.name %></td>
+              <td><%= trip.trip_date %></td>
+              <td><%= trip.user.name %></td>
+              <td><%= trip.description %></td>
+              <td><%= link_to 'Comment', trip_comments_path(trip) %></td>
+              <td><%= link_to 'Show', trip_locations_path(trip) %></td>
+              <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
           <% end %>
-  </table>
-</div> -->
-<div class="panel panel-default">
-<div class="panel-heading">My Trips</div>
-<!-- <div class="trip_list"> -->
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Trip</th>
-        <th>Trip Date</th>
-        <th>Creator</th>
-        <th>Description</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+        </tbody>
+      </table>
+    </div>
+    <!-- </div> -->
 
-    <tbody>
-      <% @trips.each do |trip| %>
-        <tr>
-          <td><%= trip.name %></td>
-          <td><%= trip.trip_date %></td>
-          <td><%= trip.user.name %></td>
-          <td><%= trip.description %></td>
-          <td><%= link_to 'Comment', trip_comments_path(trip) %></td>
-          <td><%= link_to 'Show', trip_locations_path(trip) %></td>
-          <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  </ul>
 </div>
-<!-- </div> -->
 
 <div class="trip_form">
-
-  <%= form_for :trip, url: '/trips' do |f| %>
-    Name: <%= f.text_field :name %> <br>
-    Lat: <%= f.text_field :lat %> <br>
-    Lng: <%= f.text_field :lng %> <br>
-    Description: <%= f.text_field :description %> <br>
-    Trip_date: <%= f.text_field :trip_date %> <br>
-    <button type="submit" id="create_trip" class="create_trip">Create</button>
-  <% end %>
-
+  <div class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <p>Add Trip &#9776;<p>
+  </div>
+  <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">
+    <%= form_for :trip, url: '/trips' do |f| %>
+      Name: <%= f.text_field :name %> <br>
+      Lat: <%= f.text_field :lat %> <br>
+      Lng: <%= f.text_field :lng %> <br>
+      Description: <%= f.text_field :description %> <br>
+      Trip_date: <%= f.text_field :trip_date %> <br>
+      <button type="submit" id="create_trip" class="create_trip">Create</button>
+    <% end %>
+  </ul>
 </div>
 
 

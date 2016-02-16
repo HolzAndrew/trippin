@@ -22,10 +22,10 @@ html, body {
 
 #map {
 	position: relative;
-  height: 60%;
-  width: 78%;
-  top: 8%;
-	left: 20%;
+  height: 50%;
+  width: 50%;
+  top: 15%;
+	left: 30%;
 } 
 
 div.user_status {

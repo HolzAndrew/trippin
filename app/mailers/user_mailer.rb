@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
 
 	def welcome_email(invitation)
 		@invitation = invitation
-		@url = "http://localhost:3000"
+		@url = "http://daytrippr.herokuapp.com/"
 		# binding.pry
 		mail to: @invitation.email, subject: "Welcome to Day Trippr!"
 

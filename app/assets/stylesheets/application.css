@@ -66,24 +66,6 @@ div.alert {
   bottom: 0;
 }
 
-div.trip_list {
-  text-align: center;
-  border: 1px solid black;
-  position: relative;
-  width: 70%;
-  top: 9%;
-  left: 15%;
-}
-
-div.location_list{
-  text-align: center;
-  border: 1px solid black;
-  position: relative;
-  width: 70%;
-  top: 9%;
-  left: 15%;
-}
-
 
 th{
   text-align: center;

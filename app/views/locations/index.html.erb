@@ -94,32 +94,39 @@
 
 </script>
 
-<div class="location_list">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Address</th>
-        <th>Venue</th>
-        <th>Pin Dropper</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @locations.each do |location| %>
+<div class="dropup location_list">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <p>Location List &#9776;<p>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <table class="table table-hover">
+      <thead>
         <tr>
-          <td><%= location.address %></td>
-          <td><%= location.venue %></td>
-          <td><%= location.user.name %></td>
-          <td><%= link_to 'Destroy', trip_location_path(@trip,location), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <th>Address</th>
+          <th>Venue</th>
+          <th>Pin Dropper</th>
+          <th colspan="3"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @locations.each do |location| %>
+          <tr>
+            <td><%= location.address %></td>
+            <td><%= location.venue %></td>
+            <td><%= location.user.name %></td>
+            <td><%= link_to 'Destroy', trip_location_path(@trip,location), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </ul>
 </div>
 
-<div class="location_form">
-
+<div class="trip_form">
+  <div class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <p>Add Location &#9776;<p>
+  </div>
+  <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">
   <%= form_for :location, url: trip_locations_path(@trip,@locations) do |f| %>
     Loc_lat: <%= f.text_field :loc_lat %> <br>
     Loc_lng: <%= f.text_field :loc_lng %> <br>
@@ -128,5 +135,6 @@
     <button type="submit" id="create_trip" class="create_trip">Create</button>
   <% end %>
   <%= link_to 'Back to Trip Plan', trips_path %>
+  </ul>
 </div>
 

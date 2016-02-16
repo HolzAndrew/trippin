@@ -23,9 +23,9 @@ html, body {
 #map {
 	position: relative;
   height: 60%;
-  width: 73%;
+  width: 70%;
   top: 8%;
-	left: 25%;
+	left: 15%;
   margin-top: 6px;
 } 
 
@@ -72,15 +72,24 @@ div.alert {
   bottom: 0;
 }
 
-table.table {
+div.trip_list {
   text-align: center;
   border: 1px solid black;
   position: relative;
-  width: 73%;
+  width: 70%;
   top: 9%;
-  left: 25%;
-  border-radius: 1%;
+  left: 15%;
 }
+
+div.location_list{
+  text-align: center;
+  border: 1px solid black;
+  position: relative;
+  width: 70%;
+  top: 9%;
+  left: 15%;
+}
+
 
 th{
   text-align: center;

@@ -6,7 +6,7 @@
 form.trip_search {
 	position: absolute;
   top: 20%;
-	left: 55%;
+	left: 75%;
 }
 
 .trip_form {
@@ -24,4 +24,11 @@ form.trip_search {
 
 .breadcrumb {
 	margin: 0 auto;
+  background-color: #404040;
+}
+ol.breadcrumb a:visited {
+  color: white;
+}
+.breadcrumb>.active{
+  color: white;
 }

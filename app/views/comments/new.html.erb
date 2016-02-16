@@ -1,5 +1,13 @@
+<ol class="breadcrumb">
+  <li><a href="/trips">My Trips</a></li>
+  <li><a href="/trips/<%= params[:trip_id]%>"><%= @trip.name %></a></li>
+  <li class="active">Comments</li>
+</ol>
+
+<div class="container">
 <h1>New Comment</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', trip_comments_path %>
+</div>

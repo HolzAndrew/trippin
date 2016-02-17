@@ -92,15 +92,19 @@
       position: getLatLng(lat, lng),
       label: labels_location[labelIndex_location++ % labels_location.length],
       map: map,
+      draggable:true,
       id: 'marker_' + markerId
     });
     
     $('#location_loc_lat').val(lat);
     $('#location_loc_lng').val(lng);
 
-    // google.maps.event.addListener(marker_location, 'rightclick', function(event) {
-    //   marker_location.setMap(null);
-    // });
+    google.maps.event.addListener(marker_location, 'dragend', function(ev){
+      lat = marker_location.getPosition().lat();
+      lng = marker_location.getPosition().lng();
+      $('#location_loc_lat').val(lat);
+      $('#location_loc_lng').val(lng);
+    });
 
     markers_temp[markerId] = marker_location; // cache marker in markers object
     bindMarkerEvents(marker_location); // bind right click event to marker

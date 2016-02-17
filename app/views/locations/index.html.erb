@@ -150,7 +150,7 @@
             <td><%= location.address %></td>
             <td><%= location.venue %></td>
             <td><%= location.user.name %></td>
-            <td><%= link_to 'Destroy', trip_location_path(@trip,location), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Delete', trip_location_path(@trip,location), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>

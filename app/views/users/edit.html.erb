@@ -1,5 +1,6 @@
 <ol class="breadcrumb">
   <li><a href="/trips">My Trips</a></li>
+  <li><a href="/users/<%= @user.id%>">My Profile</a></li>
   <li class="active">Edit Profile</li>
 </ol>
 
@@ -9,7 +10,5 @@
 
 	<%= render 'form' %>
 
-	<%= link_to 'Show', @user %> |
-	<%= link_to 'Back', trips_path %>
 
 </div>

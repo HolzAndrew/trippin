@@ -16,9 +16,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new(invitation_params)
     respond_to do |format|
       if @invitation.save
-        if !User.find_by(email: @invitation.email)
-          UserMailer.welcome_email(@invitation).deliver_now
-        end
+        UserMailer.welcome_email(@invitation).deliver_now
         format.html { redirect_to invitations_url, notice: 'Invitation was successfully sent.' }
       else
         format.html { render :index }

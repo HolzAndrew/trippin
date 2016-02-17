@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+    redirect_to trip_comments_url
     @trip = Trip.find(params[:trip_id])
     @comment = Comment.find(params[:id])
     @invitations = Invitation.where(email: session[:user_email])
@@ -44,10 +45,10 @@ class CommentsController < ApplicationController
     # binding.pry
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to [@trip,@comment], notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: [@trip,@comment] }
+        format.html { redirect_to trip_comments_url, notice: 'Comment was successfully created.' }
+        format.json { render :index, status: :created, location: [@trip,@comment] }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -60,8 +61,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])  
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to [@trip,@comment], notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: [@trip,@comment] }
+        format.html { redirect_to trip_comments_url, notice: 'Comment was successfully updated.' }
+        format.json { render :index, status: :ok, location: [@trip,@comment] }
       else
         format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -74,10 +75,14 @@ class CommentsController < ApplicationController
   def destroy
     @trip = Trip.find(params[:trip_id])
     @comment = Comment.find(params[:id])
-    @comment.destroy
     respond_to do |format|
-      format.html { redirect_to trip_comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+      if @trip.user_id == session[:user_id]
+        @comment.destroy
+        format.html { redirect_to trip_comments_url, notice: 'Comment was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to trip_comments_url, notice: 'You are not the creator of this comment.' }
+      end
     end
   end
 

@@ -104,7 +104,7 @@
               <td><%= trip.trip_date %></td>
               <td><%= trip.user.name %></td>
               <td><%= trip.description %></td>
-              <td><span class="badge"><%= link_to trip.comments.length, trip_comments_path(trip) %></span></td>
+              <td><a href=<%= trip_comments_path(trip) %>><span class="badge"><%= trip.comments.length %></span></a></td>
               <td><%= link_to 'Remove Trip', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>

@@ -24,8 +24,6 @@
           <br>
           <%= link_to 'New Comment', new_trip_comment_path(@trip) %>
           <br>
-          <%= link_to 'Show', trip_comment_path(@trip,comment) %>
-          <br>
           <%= link_to 'Edit', edit_trip_comment_path(@trip,comment) %>
           <br>
           <%= link_to 'Destroy', trip_comment_path(@trip,comment), method: :delete, data: { confirm: 'Are you sure?' } %>

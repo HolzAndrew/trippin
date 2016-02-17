@@ -5,12 +5,17 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-
-    trip_user_lists = TripUserList.all
-    @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
-    @invitations = Invitation.where(email: session[:user_email])
-    @num_of_invites = @invitations.length
-
+    if current_user
+      trip_user_lists = TripUserList.all
+      @trips = Trip.joins(:trip_user_lists).where('trip_user_lists.user_id' => session[:user_id])
+      @invitations = Invitation.where(email: session[:user_email])
+      @num_of_invites = @invitations.length
+      render :index
+    else
+      respond_to do |format|
+        format.html { redirect_to users_path, notice: 'Please signup or login first.' }
+      end
+    end
     #joins(:trip_user_lists).where("trip_user_lists.user_id = session[:user_id]")
   end
   # GET /trips/1

@@ -74,21 +74,27 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.name != params[:user][:name]
-        check_name = User.find_by_name(params[:user][:name])
+    if @user.name != params[:user][:name] && @user.email == params[:user][:email]
+      check_name = User.find_by_name(params[:user][:name])
+      respond_to do |format|
         if check_name
           format.html { redirect_to edit_user_path, notice: 'The name already exists.' }
+        elsif @user.update(user_update_params)
+          format.html { redirect_to @user, notice: 'User was successfully updated.' }
         end
-      elsif @user.email != params[:user][:email]
-        check_email = User.find_by_email(params[:user][:email])
+      end
+    elsif @user.email != params[:user][:email] && @user.name == params[:user][:name]
+      check_email = User.find_by_email(params[:user][:email])
+      respond_to do |format|
         if check_email
           format.html { redirect_to edit_user_path, notice: 'The email already exists.' }
+        elsif @user.update(user_update_params)
+          format.html { redirect_to @user, notice: 'User was successfully updated.' }
         end
-      elsif @user.update(user_update_params)
+      end
+    else @user.update(user_update_params)
+      respond_to do |format|
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-      else
-        format.html { redirect_to edit_user_path, notice: 'Edit failed.' }
       end
     end
   end
@@ -115,6 +121,7 @@ class UsersController < ApplicationController
     end
 
     def user_update_params
+      # binding.pry
       params.require(:user).permit(:name, :email, :image_url)
     end
 end

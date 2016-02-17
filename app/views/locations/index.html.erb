@@ -17,11 +17,10 @@
 
   var markers_locations=[];
   var marker_location;
+  var markers_temp = {};
   var addMarker;
   var labels_location = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   var labelIndex_location = 0;
-  var loc_lat;
-  var loc_lng;
   var myLatLng_location=[];
 
   var locations_information = $('.locations_information').data('locations');
@@ -74,21 +73,54 @@
 
   document.onload = drop();
 
+  var getMarkerUniqueId= function(lat, lng) {
+    return lat + '_' + lng;
+  }
+
+  var getLatLng = function(lat, lng) {
+    return new google.maps.LatLng(lat, lng);
+  };
+
   function addMarker(location, map) {
-    // Add the marker at the clicked location, and add the next-available label
-    // from the array of alphabetical characters.
-      marker_location = new google.maps.Marker({
-        position: location,
-        label: labels_location[labelIndex_location++ % labels_location.length],
-        map: map
-      });
-      markers_locations.push(marker_location);
-      loc_lat = marker_location.getPosition().lat();
-      loc_lng = marker_location.getPosition().lng();
-      // debugger
-      $('#location_loc_lat').val(loc_lat);
-      $('#location_loc_lng').val(loc_lng);
-    }//add markers
+  // Add the marker at the clicked location, and add the next-available label
+  // from the array of alphabetical characters.
+    var lat = location.lat(); // lat of clicked point
+    var lng = location.lng(); // lng of clicked point
+    var markerId = getMarkerUniqueId(lat, lng); // this will be used to cache this marker in markers_temp object.
+
+    marker_location = new google.maps.Marker({
+      position: getLatLng(lat, lng),
+      label: labels_location[labelIndex_location++ % labels_location.length],
+      map: map,
+      id: 'marker_' + markerId
+    });
+    
+    $('#location_loc_lat').val(lat);
+    $('#location_loc_lng').val(lng);
+
+    // google.maps.event.addListener(marker_location, 'rightclick', function(event) {
+    //   marker_location.setMap(null);
+    // });
+
+    markers_temp[markerId] = marker_location; // cache marker in markers object
+    bindMarkerEvents(marker_location); // bind right click event to marker
+
+    markers_locations.push(marker_location);
+
+  }//add markers
+
+  var bindMarkerEvents = function(markers_locations) {
+    google.maps.event.addListener(markers_locations, "rightclick", function (point) {
+        var markerId = getMarkerUniqueId(point.latLng.lat(), point.latLng.lng()); // get marker id by using clicked point's coordinate
+        var markers_locations = markers_temp[markerId]; // find marker
+        removeMarker(markers_locations, markerId); // remove it
+    });
+  };
+
+  var removeMarker = function(markers_locations, markerId) {
+    markers_locations.setMap(null); // set markers setMap to null to remove it from map
+    delete markers_temp[markerId]; // delete marker instance from markers object
+  };
 
   // google.maps.event.addDomListener(window, 'load', initMap);
 
